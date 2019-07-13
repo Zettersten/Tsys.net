@@ -39,8 +39,8 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      cd $(system.teamProject)\bin
-      dir
+      cd $(system.teamProject)\bin\$(buildConfiguration)
+      dir /s
       pwd
       
 - task: DotNetCoreCLI@2
