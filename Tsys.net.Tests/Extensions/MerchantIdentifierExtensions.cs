@@ -56,7 +56,7 @@ namespace Tsys.net.Tests.Extensions
         {
             Models.MerchantIdentifierModel merchant = MockIdentifierService.MockMerchantIdentifierModel();
 
-            string expected = "Gloucester";
+            string expected = "Gloucester   ";
             string actual = merchant.FormatMerchantCity();
 
             Assert.Equal(expected, actual);
