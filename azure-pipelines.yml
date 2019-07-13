@@ -51,4 +51,4 @@ steps:
     tagSource: 'manual'
     tag: 'v$(Build.BuildNumber)'
     title: 'v$(Build.BuildNumber)'
-    assets: '$(Build.ArtifactStagingDirectory)/Tsys.net/bin/$(buildConfiguration)/*'
+    assets: '$(Build.ArtifactStagingDirectory)/$(system.teamProject)/bin/$(buildConfiguration)/*'
