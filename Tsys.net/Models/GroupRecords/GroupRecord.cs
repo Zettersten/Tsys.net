@@ -1,6 +1,4 @@
-﻿using Tsys.net.Models.Shared;
-
-namespace Tsys.net.Models.GroupRecords
+﻿namespace Tsys.net.Models.GroupRecords
 {
     public class GroupRecord
     {

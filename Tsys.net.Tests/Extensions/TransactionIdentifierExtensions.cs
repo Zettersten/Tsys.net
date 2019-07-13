@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Tsys.net.Extensions;
+﻿using Tsys.net.Extensions;
 using Tsys.net.Tests.Mocks;
 using Xunit;
 

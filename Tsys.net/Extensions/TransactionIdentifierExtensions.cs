@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Tsys.net.Models;
-using Tsys.net.Models.Shared;
+﻿using Tsys.net.Models;
 
 namespace Tsys.net.Extensions
 {

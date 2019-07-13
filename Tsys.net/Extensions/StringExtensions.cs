@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Tsys.net.Extensions
+﻿namespace Tsys.net.Extensions
 {
     public static class StringExtensions
     {
