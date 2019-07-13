@@ -13,7 +13,7 @@ namespace Tsys.net.Tests.Extensions
         {
             var merchant = MockIdentifierService.MockMerchantIdentifierModel();
 
-            var expected = "000000000011";
+            var expected = "999999999911";
             var actual = merchant.FormatMerchantNumber();
 
             Assert.Equal(expected, actual);
@@ -35,7 +35,7 @@ namespace Tsys.net.Tests.Extensions
         {
             var merchant = MockIdentifierService.MockMerchantIdentifierModel();
 
-            var expected = "    20147";
+            var expected = "543211420";
             var actual = merchant.FormatCityCode();
 
             Assert.Equal(expected, actual);
@@ -57,7 +57,7 @@ namespace Tsys.net.Tests.Extensions
         {
             var merchant = MockIdentifierService.MockMerchantIdentifierModel();
 
-            var expected = "19515";
+            var expected = "8320";
             var actual = merchant.FormatStreetAddress();
 
             Assert.Equal(expected, actual);
@@ -68,7 +68,7 @@ namespace Tsys.net.Tests.Extensions
         {
             var merchant = MockIdentifierService.MockMerchantIdentifierModel();
 
-            var expected = "571-2869577";
+            var expected = "800-1234567";
             var actual = merchant.FormatCustomerServicePhoneNumber();
 
             Assert.Equal(expected, actual);
@@ -79,7 +79,7 @@ namespace Tsys.net.Tests.Extensions
         {
             var merchant = MockIdentifierService.MockMerchantIdentifierModel();
 
-            var expected = "571-2869577";
+            var expected = "800-1234567";
             var actual = merchant.FormatMerchantPhoneNumber();
 
             Assert.Equal(expected, actual);
