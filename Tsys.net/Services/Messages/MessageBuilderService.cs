@@ -3,6 +3,7 @@ using System;
 using System.Text;
 using Tsys.net.Extensions;
 using Tsys.net.Models;
+using Tsys.net.Models.Constants;
 using Tsys.net.Models.GroupRecords;
 using Tsys.net.Models.Shared;
 
@@ -10,36 +11,6 @@ namespace Tsys.net.Services.Messages
 {
     public class MessageBuilderService
     {
-        /// <summary>
-        /// Credit Card Authorization request messages (Groups I and III)
-        /// </summary>
-        private const string CREDIT_CARD_AUTHORIZATION_REQUEST_MESSAGE = "D";
-
-        /// <summary>
-        /// Encrypted Credit Card Authorization request messages (Group I and III)
-        /// </summary>
-        private const string ENCRYPTED_CREDIT_CARD_AUTHORIZATION_REQUEST_MESSAGE = "W";
-
-        /// <summary>
-        /// Credit Card authorization response messages (Groups I and III)
-        /// </summary>
-        private const string CREDIT_CARD_AUTHORIZATION_RESPONSE_MESSAGE = "E";
-
-        /// <summary>
-        /// Single authorization per connection (“Single-Trans.”)
-        /// </summary>
-        private const string SINGLE_AUTHORIZATION_PER_CONNECTION = "0";
-
-        /// <summary>
-        /// Multiple authorizations per connection, single-threaded (“Multi- Trans.”)
-        /// </summary>
-        private const string MULTIPLE_AUTHORIZATION_PER_CONNECTION = "2";
-
-        /// <summary>
-        /// Multiple authorizations per connection, full-duplex (“Interleaved”)
-        /// </summary>
-        private const string INTERLEAVED_AUTHORIZATION_PER_CONNECTION = "4";
-
         private readonly ILogger<MessageBuilderService> logger;
 
         public MessageBuilderService(ILogger<MessageBuilderService> logger)
@@ -47,12 +18,12 @@ namespace Tsys.net.Services.Messages
             this.logger = logger;
         }
 
-        public string BuildManualAVSRequestMessage(MerchantIdentifierModel merchant, TransactionIdentifierModel transaction, CustomerIdentifierModel customer, CustomerAddressIdentifierModel address)
+        public string BuildManualAVSRequestMessage(MerchantIdentifierModel merchant, TransactionIdentifierModel transaction, CustomerIdentifierModel customer, CustomerAddressIdentifierModel address, DeveloperModel developer)
         {
             StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder
-                .Append(TsysMessageHelper.StartMessage(INTERLEAVED_AUTHORIZATION_PER_CONNECTION, CREDIT_CARD_AUTHORIZATION_REQUEST_MESSAGE))
+            string result = stringBuilder
+                .BeginTsysMessage(MessageConstants.INTERLEAVED_AUTHORIZATION_PER_CONNECTION, MessageConstants.CREDIT_CARD_AUTHORIZATION_REQUEST_MESSAGE)
                 .Append(merchant.AcquirerBIN)
                 .Append(merchant.FormatMerchantNumber())
                 .Append(merchant.FormatStoreNumber())
@@ -63,7 +34,7 @@ namespace Tsys.net.Services.Messages
                 .Append(merchant.CountryCode)
                 .Append(merchant.FormatCityCode())
                 .Append(transaction.LanguageIndicator)
-                .Append(TsysMessageHelper.TimeZoneDifferential)
+                .Append(MessageConstants.TimeZoneDifferential.EST)
                 .Append(merchant.MerchantCategoryCode)
                 .Append(transaction.RequestedACI)
                 .Append(transaction.FormatTransactionSequenceNumber())
@@ -84,17 +55,9 @@ namespace Tsys.net.Services.Messages
                 .Append(merchant.FormatMerchantState())
                 .Append(AsciiTable.FS)
                 .Append(AsciiTable.FS)
-                .Append(AsciiTable.FS);
-
-            string developer = new DeveloperModel()
-            {
-                DeveloperId = "7",
-                VersionId = "014"
-            }.ToString();
-
-            stringBuilder.Append(developer);
-
-            string result = TsysMessageHelper.EndMessage(stringBuilder.ToString());
+                .Append(AsciiTable.FS)
+                .Append(developer)
+                .EndTsysMessage();
 
             logger.LogInformation(result);
 

@@ -1,9 +1,19 @@
 ﻿using Tsys.net.Models;
+using Tsys.net.Models.GroupRecords;
 
 namespace Tsys.net.Tests.Mocks
 {
     public static class MockIdentifierService
     {
+        public static DeveloperModel MockDeveloperModel()
+        {
+            return new DeveloperModel()
+            {
+                DeveloperId = "7",
+                VersionId = "014"
+            };
+        }
+
         public static MerchantIdentifierModel MockMerchantIdentifierModel()
         {
             return new MerchantIdentifierModel
