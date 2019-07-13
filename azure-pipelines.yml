@@ -29,12 +29,7 @@ steps:
     command: 'build'
     projects: '$(solution)'
     arguments: '/p:SkipInvalidConfigurations=true /t:Pack /p:Configuration=$(buildConfiguration)'
-    
-- task: CmdLine@2
-  inputs:
-    script: |
-      dir
-      pwd
+  
 
 - task: VSTest@2
   inputs:
@@ -44,6 +39,7 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
+      cd $(system.teamProject)\bin
       dir
       pwd
       
