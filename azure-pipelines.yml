@@ -42,7 +42,6 @@ steps:
     nuGetFeedType: 'internal'
     publishVstsFeed: 'd7472998-0430-48de-a9c9-5c4045e5debe'
 
-
 - task: GitHubRelease@0
   inputs:
     gitHubConnection: 'Zettersten'
