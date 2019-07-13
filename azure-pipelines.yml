@@ -36,6 +36,16 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/Tsys.net/bin/$(buildConfiguration)/*.nupkg;'
+    packagesToPush: '$(Build.ArtifactStagingDirectory).nupkg;'
     nuGetFeedType: 'internal'
     publishVstsFeed: 'd7472998-0430-48de-a9c9-5c4045e5debe'
+
+- task: GitHubRelease@0
+  inputs:
+    gitHubConnection: 'Zettersten'
+    repositoryName: 'Zettersten/Tsys.net'
+    action: 'create'
+    target: '$(Build.SourceVersion)'
+    tagSource: 'auto'
+    releaseNotesSource: 'input'
+    assets: '$(Build.ArtifactStagingDirectory)/Tsys.net/bin/$(buildConfiguration)/*'
