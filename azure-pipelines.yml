@@ -42,12 +42,14 @@ steps:
     nuGetFeedType: 'internal'
     publishVstsFeed: 'd7472998-0430-48de-a9c9-5c4045e5debe'
 
+
 - task: GitHubRelease@0
   inputs:
     gitHubConnection: 'Zettersten'
     repositoryName: 'Zettersten/Tsys.net'
     action: 'create'
     target: '$(Build.SourceVersion)'
-    tagSource: 'auto'
-    releaseNotesSource: 'input'
+    tagSource: 'manual'
+    tag: 'v$(Build.BuildNumber)'
+    title: 'v$(Build.BuildNumber)'
     assets: '$(Build.ArtifactStagingDirectory)/Tsys.net/bin/$(buildConfiguration)/*'
