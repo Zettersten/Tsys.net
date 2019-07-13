@@ -38,17 +38,6 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/$(system.teamProject)/bin/$(buildConfiguration)/*.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/$(system.teamProject)/$(system.teamProject)/bin/$(buildConfiguration)/*.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: 'd7472998-0430-48de-a9c9-5c4045e5debe'
-
-- task: GitHubRelease@0
-  inputs:
-    gitHubConnection: 'Zettersten'
-    repositoryName: 'Zettersten/Tsys.net'
-    action: 'create'
-    target: '$(Build.SourceVersion)'
-    tagSource: 'manual'
-    tag: 'v$(Build.BuildNumber)'
-    title: 'v$(Build.BuildNumber)'
-    assets: '$(Build.ArtifactStagingDirectory)/$(system.teamProject)/bin/$(buildConfiguration)/*'
