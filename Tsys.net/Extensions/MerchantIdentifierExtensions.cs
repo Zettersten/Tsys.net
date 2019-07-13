@@ -21,7 +21,7 @@ namespace Tsys.net.Extensions
 
         public static string FormatMerchantNumber(this MerchantIdentifierModel merchant)
         {
-            long value = merchant.MerchantNumber;
+            ulong value = merchant.MerchantNumber;
 
             return $"{value}".PadLeft(12, '0');
         }
@@ -35,7 +35,7 @@ namespace Tsys.net.Extensions
 
         public static string FormatStoreNumber(this MerchantIdentifierModel merchant)
         {
-            int value = merchant.StoreNumber;
+            uint value = merchant.StoreNumber;
 
             return $"{value}".PadLeft(4, '0');
         }

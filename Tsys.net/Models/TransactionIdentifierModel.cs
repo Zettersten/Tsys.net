@@ -2,13 +2,13 @@
 {
     public struct TransactionIdentifierModel
     {
-        public int CurrencyCode { get; set; }
-        
+        public uint CurrencyCode { get; set; }
+
         public string LanguageIndicator { get; set; }
 
-        public int TransactionSequenceNumber { get; set; }
+        public uint TransactionSequenceNumber { get; set; }
 
-        public int RetreivalReferenceNumber { get; set; }
+        public uint RetreivalReferenceNumber { get; set; }
 
         public string ReturnedAci { get; set; }
 
@@ -34,18 +34,18 @@
 
         public string AddressVerificationData { get; set; }
 
-        public long TransactionAmount { get; set; }
+        public ulong TransactionAmount { get; set; }
 
-        public long SecondaryAmount { get; set; }
+        public ulong SecondaryAmount { get; set; }
 
-        public long SettlementAmount { get; set; }
+        public ulong SettlementAmount { get; set; }
 
-        public long TotalAuthorizedAmount { get; set; }
+        public ulong TotalAuthorizedAmount { get; set; }
 
         public string PrestigiousPropertyIndicator { get; set; }
 
         public string MarketSpecificDataId { get; set; }
 
-        public int StayOfDuration { get; set; }
+        public uint StayOfDuration { get; set; }
     }
 }

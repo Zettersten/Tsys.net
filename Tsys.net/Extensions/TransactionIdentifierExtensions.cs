@@ -6,7 +6,7 @@ namespace Tsys.net.Extensions
     {
         public static string FormatTransactionSequenceNumber(this TransactionIdentifierModel transaction)
         {
-            int value = transaction.TransactionSequenceNumber;
+            uint value = transaction.TransactionSequenceNumber;
 
             return $"{value}".PadLeft(4, '0');
         }

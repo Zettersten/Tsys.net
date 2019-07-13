@@ -2,23 +2,23 @@
 {
     public struct MerchantIdentifierModel
     {
-        public int AcquirerBIN { get; set; }
+        public uint AcquirerBIN { get; set; }
 
-        public long MerchantNumber { get; set; }
+        public ulong MerchantNumber { get; set; }
 
-        public int StoreNumber { get; set; }
+        public uint StoreNumber { get; set; }
 
-        public int TerminalNumber { get; set; }
+        public uint TerminalNumber { get; set; }
 
         public string DeviceCode { get; set; }
 
         public string IndustryCode { get; set; }
 
-        public int CountryCode { get; set; }
+        public uint CountryCode { get; set; }
 
         public string CityCode { get; set; }
 
-        public int MerchantCategoryCode { get; set; }
+        public uint MerchantCategoryCode { get; set; }
 
         public string MerchantName { get; set; }
 
