@@ -1,11 +1,8 @@
 ﻿namespace Tsys.net.Models.GroupRecords
 {
-    public class ReasonCodeModel : GroupRecord
+    public struct ReasonCodeModel
     {
-        public ReasonCodeModel()
-        {
-            Group3VersionNumber = "056";
-        }
+        private string Group3VersionNumber => "056";
 
         public int MessageReasonCode { get; set; }
 

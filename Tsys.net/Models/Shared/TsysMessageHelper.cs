@@ -64,8 +64,8 @@
         /// <returns></returns>
         public static char GetLRC(string message)
         {
-            var lrc = char.MinValue;
-            var chars = message.ToCharArray();
+            char lrc = char.MinValue;
+            char[] chars = message.ToCharArray();
 
             foreach (char c in chars)
             {

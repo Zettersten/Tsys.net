@@ -1,9 +1,9 @@
 ﻿namespace Tsys.net.Models
 {
-    public class TransactionIdentifierModel
+    public struct TransactionIdentifierModel
     {
         public int CurrencyCode { get; set; }
-
+        
         public string LanguageIndicator { get; set; }
 
         public int TransactionSequenceNumber { get; set; }

@@ -1,4 +1,6 @@
-﻿namespace Tsys.net.Extensions
+﻿using System.Linq;
+
+namespace Tsys.net.Extensions
 {
     public static class StringExtensions
     {
@@ -13,6 +15,19 @@
             }
 
             return source;
+        }
+
+        /// <summary>
+        /// Takes a phone number of any format and produces ###-#######
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string FormatPhoneNumber(this string value)
+        {
+            string digitsOnly = new string(value.Where(x => char.IsDigit(x)).ToArray());
+            long phoneNumber = long.Parse(digitsOnly);
+
+            return string.Format("{0:###-#######}", phoneNumber);
         }
     }
 }

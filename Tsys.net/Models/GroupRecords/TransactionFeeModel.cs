@@ -2,12 +2,9 @@
 
 namespace Tsys.net.Models.GroupRecords
 {
-    public class TransactionFeeModel : GroupRecord
+    public struct TransactionFeeModel
     {
-        public TransactionFeeModel()
-        {
-            Group3VersionNumber = "025";
-        }
+        private string Group3VersionNumber => "025";
 
         /// <summary>
         /// Transaction Fee Amount is used in PIN POS and credit transactions to carry the acquirerassessed

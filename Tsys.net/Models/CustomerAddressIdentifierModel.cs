@@ -3,7 +3,7 @@ using Tsys.net.Models.Shared;
 
 namespace Tsys.net.Models
 {
-    public class CustomerAddressIdentifierModel
+    public struct CustomerAddressIdentifierModel
     {
         public string StreetAdress { get; set; }
 
@@ -11,8 +11,8 @@ namespace Tsys.net.Models
 
         public override string ToString()
         {
-            var address = this.FormatCustomerStreetAddress();
-            var zip = this.FormatCustomerZipCode();
+            string address = this.FormatCustomerStreetAddress();
+            string zip = this.FormatCustomerZipCode();
 
             if (address.Length + zip.Length > 28)
             {

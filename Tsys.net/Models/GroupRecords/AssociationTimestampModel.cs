@@ -1,11 +1,8 @@
 ﻿namespace Tsys.net.Models.GroupRecords
 {
-    public class AssociationTimestampModel : GroupRecord
+    public struct AssociationTimestampModel
     {
-        public AssociationTimestampModel()
-        {
-            Group3VersionNumber = "050";
-        }
+        private string Group3VersionNumber => "050";
 
         public override string ToString()
         {

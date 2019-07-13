@@ -2,7 +2,7 @@
 
 namespace Tsys.net.Models
 {
-    public class CustomerIdentifierModel
+    public struct CustomerIdentifierModel
     {
         public string FullTrack1 { get; set; }
 

@@ -2,12 +2,9 @@
 
 namespace Tsys.net.Models.GroupRecords
 {
-    public class IntegratedChipCardModel : GroupRecord
+    public struct IntegratedChipCardModel
     {
-        public IntegratedChipCardModel()
-        {
-            Group3VersionNumber = "055";
-        }
+        private string Group3VersionNumber => "055";
 
         public string TlvEMVTagData { get; set; }
 

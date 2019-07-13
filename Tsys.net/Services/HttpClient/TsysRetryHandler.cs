@@ -13,6 +13,7 @@ namespace Tsys.net.Services.HttpClient
         // probably not the most user friendly way you could respond to "the
         // network cable got pulled out."
         private readonly int MaxRetries;
+
         private readonly int MaxDelayInSecond;
 
         private readonly ILogger logger;

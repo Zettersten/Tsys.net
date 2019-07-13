@@ -1,6 +1,6 @@
 ﻿namespace Tsys.net.Models
 {
-    public class MerchantIdentifierModel
+    public struct MerchantIdentifierModel
     {
         public int AcquirerBIN { get; set; }
 

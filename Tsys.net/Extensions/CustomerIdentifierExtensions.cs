@@ -20,15 +20,9 @@ namespace Tsys.net.Extensions
         public static string FormatCustomerStreetAddress(this CustomerAddressIdentifierModel customer)
         {
             string value = customer.StreetAdress;
-
             string digitsAndSpacesOnly = new string(value.Where(x => char.IsDigit(x) || char.IsWhiteSpace(x)).ToArray());
 
-            if (digitsAndSpacesOnly.Length <= 20)
-            {
-                return digitsAndSpacesOnly.Trim();
-            }
-
-            return digitsAndSpacesOnly.Substring(0, 20).Trim();
+            return digitsAndSpacesOnly.Truncate(20).Trim();
         }
 
         public static string FormatCustomerZipCode(this CustomerAddressIdentifierModel customer)

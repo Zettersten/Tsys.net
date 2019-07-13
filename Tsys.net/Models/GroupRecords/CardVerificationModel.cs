@@ -1,11 +1,8 @@
 ﻿namespace Tsys.net.Models.GroupRecords
 {
-    public class CardVerificationModel : GroupRecord
+    public struct CardVerificationModel
     {
-        public CardVerificationModel()
-        {
-            Group3VersionNumber = "039";
-        }
+        private string Group3VersionNumber => "039";
 
         public string CardholderVerificationMethod { get; set; }
 

@@ -2,12 +2,9 @@
 
 namespace Tsys.net.Models.GroupRecords
 {
-    public class DeveloperModel : GroupRecord
+    public struct DeveloperModel
     {
-        public DeveloperModel()
-        {
-            Group3VersionNumber = "020";
-        }
+        private string Group3VersionNumber => "020";
 
         public string DeveloperId { get; set; }
 

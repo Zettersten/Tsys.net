@@ -1,11 +1,8 @@
 ﻿namespace Tsys.net.Models.GroupRecords
 {
-    public class POSDataCodeModel : GroupRecord
+    public struct POSDataCodeModel
     {
-        public POSDataCodeModel()
-        {
-            Group3VersionNumber = "027";
-        }
+        private string Group3VersionNumber => "027";
 
         public string POSDataCode { get; set; }
 

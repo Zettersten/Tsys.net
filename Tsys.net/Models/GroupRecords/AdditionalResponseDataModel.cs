@@ -2,12 +2,9 @@
 
 namespace Tsys.net.Models.GroupRecords
 {
-    public class AdditionalResponseDataModel : GroupRecord
+    public struct AdditionalResponseDataModel
     {
-        public AdditionalResponseDataModel()
-        {
-            Group3VersionNumber = "057";
-        }
+        private string Group3VersionNumber => "057";
 
         public string AdditionalResponseData { get; set; }
 

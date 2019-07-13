@@ -1,11 +1,8 @@
 ﻿namespace Tsys.net.Models.GroupRecords
 {
-    public class ChipConditionModel : GroupRecord
+    public struct ChipConditionModel
     {
-        public ChipConditionModel()
-        {
-            Group3VersionNumber = "011";
-        }
+        private string Group3VersionNumber => "011";
 
         public string ChipConditionCode { get; set; }
 

@@ -9,7 +9,7 @@ namespace Tsys.net.Services.HttpClient
     public class TsysHttpClient : System.Net.Http.HttpClient
     {
         private readonly IOptions<TsysClientOptions> tsysClientOptions;
-        
+
         private readonly ILogger logger;
 
         public TsysHttpClient(IOptions<TsysClientOptions> tsysClientOptions, ILogger<TsysHttpClient> logger) : base(new TsysRetryHandler(new HttpClientHandler(), tsysClientOptions.Value, logger))

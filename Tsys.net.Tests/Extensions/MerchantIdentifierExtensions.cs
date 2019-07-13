@@ -7,7 +7,7 @@ namespace Tsys.net.Tests.Extensions
     [Collection("0.0.0")]
     public class MerchantIdentifierExtensions
     {
-        [Fact(DisplayName = "5.129 - Merchant number")]
+        [Fact(DisplayName = "5.129 Merchant number")]
         public void Should_Format_right_justified_and_zero_fill_merchant_number()
         {
             Models.MerchantIdentifierModel merchant = MockIdentifierService.MockMerchantIdentifierModel();
@@ -36,6 +36,39 @@ namespace Tsys.net.Tests.Extensions
 
             string expected = "543211420";
             string actual = merchant.FormatCityCode();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact(DisplayName = "5.32.3 Merchant state")]
+        public void Should_Format_merchant_state()
+        {
+            Models.MerchantIdentifierModel merchant = MockIdentifierService.MockMerchantIdentifierModel();
+
+            string expected = "VA";
+            string actual = merchant.FormatMerchantState();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact(DisplayName = "5.32.2 Merchant city")]
+        public void Should_Format_merchant_city()
+        {
+            Models.MerchantIdentifierModel merchant = MockIdentifierService.MockMerchantIdentifierModel();
+
+            string expected = "Gloucester";
+            string actual = merchant.FormatMerchantCity();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact(DisplayName = "5.32.1 Merchant name")]
+        public void Should_Format_merchant_name()
+        {
+            Models.MerchantIdentifierModel merchant = MockIdentifierService.MockMerchantIdentifierModel();
+
+            string expected = "Internet Service Provider";
+            string actual = merchant.FormatMerchantName();
 
             Assert.Equal(expected, actual);
         }

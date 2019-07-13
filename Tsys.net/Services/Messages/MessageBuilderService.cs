@@ -47,55 +47,9 @@ namespace Tsys.net.Services.Messages
             this.logger = logger;
         }
 
-        public string BuildRequestMessage(MerchantIdentifierModel merchant, TransactionIdentifierModel transaction, CustomerIdentifierModel customer)
-        {
-            var stringBuilder = new StringBuilder();
-
-            stringBuilder
-                .Append(TsysMessageHelper.StartMessage(INTERLEAVED_AUTHORIZATION_PER_CONNECTION, CREDIT_CARD_AUTHORIZATION_REQUEST_MESSAGE))
-                .Append(merchant.AcquirerBIN)
-                .Append(merchant.FormatMerchantNumber())
-                .Append(merchant.FormatStoreNumber())
-                .Append(merchant.TerminalNumber)
-                .Append(merchant.DeviceCode)
-                .Append(merchant.IndustryCode)
-                .Append(transaction.CurrencyCode)
-                .Append(merchant.CountryCode)
-                .Append(merchant.FormatCityCode())
-                .Append(transaction.LanguageIndicator)
-                .Append(TsysMessageHelper.TimeZoneDifferential)
-                .Append(merchant.MerchantCategoryCode)
-                .Append(transaction.RequestedACI)
-                .Append(transaction.FormatTransactionSequenceNumber())
-                .Append(transaction.TransactionCode)
-                .Append(transaction.CardholderIdCode)
-                .Append(transaction.AccountDataSource)
-                .Append(customer)
-                .Append(AsciiTable.FS)
-                .Append(AsciiTable.FS)
-                .Append(AsciiTable.FS)
-                .Append(transaction.TransactionAmount)
-                .Append(new DeveloperModel()
-                {
-                    DeveloperId = "Test",
-                    VersionId = "1000"
-                })
-                .Append(AsciiTable.GS)
-                .Append(new TransactionFeeModel()
-                {
-                    TransactionFeeAmount = "D00000150"
-                });
-
-            var result = TsysMessageHelper.EndMessage(stringBuilder.ToString());
-
-            logger.LogInformation(result);
-
-            return result;
-        }
-
         public string BuildManualAVSRequestMessage(MerchantIdentifierModel merchant, TransactionIdentifierModel transaction, CustomerIdentifierModel customer, CustomerAddressIdentifierModel address)
         {
-            var stringBuilder = new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
 
             stringBuilder
                 .Append(TsysMessageHelper.StartMessage(INTERLEAVED_AUTHORIZATION_PER_CONNECTION, CREDIT_CARD_AUTHORIZATION_REQUEST_MESSAGE))
@@ -127,12 +81,12 @@ namespace Tsys.net.Services.Messages
                 .Append(AsciiTable.FS)
                 .Append(merchant.FormatMerchantName())
                 .Append(merchant.FormatMerchantCity())
-                .Append(merchant.MerchantState)
+                .Append(merchant.FormatMerchantState())
                 .Append(AsciiTable.FS)
                 .Append(AsciiTable.FS)
                 .Append(AsciiTable.FS);
 
-            var developer = new DeveloperModel()
+            string developer = new DeveloperModel()
             {
                 DeveloperId = "7",
                 VersionId = "014"
@@ -140,8 +94,7 @@ namespace Tsys.net.Services.Messages
 
             stringBuilder.Append(developer);
 
-            var result = TsysMessageHelper.EndMessage(stringBuilder.ToString());
-
+            string result = TsysMessageHelper.EndMessage(stringBuilder.ToString());
 
             logger.LogInformation(result);
 
