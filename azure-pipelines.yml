@@ -38,10 +38,12 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/Tsys.net/bin/$(buildConfiguration)/*.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: 'd7472998-0430-48de-a9c9-5c4045e5debe'
     verbosityPack: 'Detailed'
+
+
 
 - task: GitHubRelease@0
   inputs:
