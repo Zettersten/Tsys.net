@@ -7,14 +7,13 @@ namespace Tsys.net.Tests.Extensions
     [Collection("0.0.0")]
     public class MerchantIdentifierExtensions
     {
-
         [Fact(DisplayName = "5.129 - Merchant number")]
         public void Should_Format_right_justified_and_zero_fill_merchant_number()
         {
-            var merchant = MockIdentifierService.MockMerchantIdentifierModel();
+            Models.MerchantIdentifierModel merchant = MockIdentifierService.MockMerchantIdentifierModel();
 
-            var expected = "999999999911";
-            var actual = merchant.FormatMerchantNumber();
+            string expected = "999999999911";
+            string actual = merchant.FormatMerchantNumber();
 
             Assert.Equal(expected, actual);
         }
@@ -22,10 +21,10 @@ namespace Tsys.net.Tests.Extensions
         [Fact(DisplayName = "5.178 Store number")]
         public void Should_Format_right_justified_and_zero_fill_store_number()
         {
-            var merchant = MockIdentifierService.MockMerchantIdentifierModel();
+            Models.MerchantIdentifierModel merchant = MockIdentifierService.MockMerchantIdentifierModel();
 
-            var expected = "0011";
-            var actual = merchant.FormatStoreNumber();
+            string expected = "0011";
+            string actual = merchant.FormatStoreNumber();
 
             Assert.Equal(expected, actual);
         }
@@ -33,10 +32,10 @@ namespace Tsys.net.Tests.Extensions
         [Fact(DisplayName = "5.59 City code")]
         public void Should_Format_right_justified_and_space_fill_city_code()
         {
-            var merchant = MockIdentifierService.MockMerchantIdentifierModel();
+            Models.MerchantIdentifierModel merchant = MockIdentifierService.MockMerchantIdentifierModel();
 
-            var expected = "543211420";
-            var actual = merchant.FormatCityCode();
+            string expected = "543211420";
+            string actual = merchant.FormatCityCode();
 
             Assert.Equal(expected, actual);
         }
@@ -44,10 +43,10 @@ namespace Tsys.net.Tests.Extensions
         [Fact(DisplayName = "5.127 Merchant email")]
         public void Should_Format_left_justified_and_truncate_merchant_email()
         {
-            var merchant = MockIdentifierService.MockMerchantIdentifierModel();
+            Models.MerchantIdentifierModel merchant = MockIdentifierService.MockMerchantIdentifierModel();
 
-            var expected = "customer@mycompanydo"; // main.com
-            var actual = merchant.FormatMerchantEmailAddress();
+            string expected = "customer@mycompanydo"; // main.com
+            string actual = merchant.FormatMerchantEmailAddress();
 
             Assert.Equal(expected, actual);
         }
@@ -55,10 +54,10 @@ namespace Tsys.net.Tests.Extensions
         [Fact(DisplayName = "5.133 Merchant street address")]
         public void Should_Format_left_justified_and_truncate_address()
         {
-            var merchant = MockIdentifierService.MockMerchantIdentifierModel();
+            Models.MerchantIdentifierModel merchant = MockIdentifierService.MockMerchantIdentifierModel();
 
-            var expected = "8320";
-            var actual = merchant.FormatStreetAddress();
+            string expected = "8320";
+            string actual = merchant.FormatStreetAddress();
 
             Assert.Equal(expected, actual);
         }
@@ -66,10 +65,10 @@ namespace Tsys.net.Tests.Extensions
         [Fact(DisplayName = "5.32.2 Customer service phone number")]
         public void Should_Format_customer_service_phone_number()
         {
-            var merchant = MockIdentifierService.MockMerchantIdentifierModel();
+            Models.MerchantIdentifierModel merchant = MockIdentifierService.MockMerchantIdentifierModel();
 
-            var expected = "800-1234567";
-            var actual = merchant.FormatCustomerServicePhoneNumber();
+            string expected = "800-1234567";
+            string actual = merchant.FormatCustomerServicePhoneNumber();
 
             Assert.Equal(expected, actual);
         }
@@ -77,10 +76,10 @@ namespace Tsys.net.Tests.Extensions
         [Fact(DisplayName = "5.32.2 Merchant phone number")]
         public void Should_Format_merchant_phone_number()
         {
-            var merchant = MockIdentifierService.MockMerchantIdentifierModel();
+            Models.MerchantIdentifierModel merchant = MockIdentifierService.MockMerchantIdentifierModel();
 
-            var expected = "800-1234567";
-            var actual = merchant.FormatMerchantPhoneNumber();
+            string expected = "800-1234567";
+            string actual = merchant.FormatMerchantPhoneNumber();
 
             Assert.Equal(expected, actual);
         }

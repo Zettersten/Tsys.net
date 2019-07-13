@@ -3,6 +3,18 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <LangVersion>7.3</LangVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>This document describes the request and response record formats for Second Generation Point Of Sale (POS) authorization devices using TSYS Acquiring Solutions’ authorization services. The following documents provide additional definition and background information. Please refer to the related documents listed for applicable information.
+
+© 2016 TSYS Acquiring Solutions®, L.L.C. All rights reserved worldwide. TSYS® is a registered trademark of Total System Services, Inc. Other marks are trademarks or registered trademarks of their respective owner. The information in this document is confidential and proprietary and is distributed to TSYS clients for their exclusive use in operating TSYS applications. It may not be reproduced in any form without prior written permission from TSYS Acquiring Solutions.</Description>
+    <PackageProjectUrl>https://github.com/Zettersten/Tsys.net</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/Zettersten/Tsys.net/master/LICENSE</PackageLicenseUrl>
+    <PackageIconUrl>https://yt3.ggpht.com/a/AGF-l783PbjvCAEHHGJ5nMRmerrLG_Rsdq2N9mYRpA=s900-mo-c-c0xffffffff-rj-k-no</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Zettersten/Tsys.net</RepositoryUrl>
+    <RepositoryType>Github</RepositoryType>
+    <PackageTags>credit cards debit aquiring tsys eis 1080 authorization payment</PackageTags>
+    <Version>0.0.1-beta</Version>
+    <Authors>Erik Zettersten</Authors>
   </PropertyGroup>
 
   <ItemGroup>

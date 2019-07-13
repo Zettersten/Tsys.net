@@ -8,7 +8,7 @@ namespace Tsys.net.Extensions
     {
         public static string FormatCustomerDataField(this CustomerIdentifierModel customer)
         {
-            var value = customer.ToString();
+            string value = customer.ToString();
 
             value = value
                 .Replace("=", AsciiTable.D)
@@ -19,9 +19,9 @@ namespace Tsys.net.Extensions
 
         public static string FormatCustomerStreetAddress(this CustomerAddressIdentifierModel customer)
         {
-            var value = customer.StreetAdress;
+            string value = customer.StreetAdress;
 
-            var digitsAndSpacesOnly = new string(value.Where(x => char.IsDigit(x) || char.IsWhiteSpace(x)).ToArray());
+            string digitsAndSpacesOnly = new string(value.Where(x => char.IsDigit(x) || char.IsWhiteSpace(x)).ToArray());
 
             if (digitsAndSpacesOnly.Length <= 20)
             {
@@ -33,7 +33,7 @@ namespace Tsys.net.Extensions
 
         public static string FormatCustomerZipCode(this CustomerAddressIdentifierModel customer)
         {
-            var value = customer.ZipCode;
+            string value = customer.ZipCode;
 
             return $"{value}";
         }
