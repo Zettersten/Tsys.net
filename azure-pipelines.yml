@@ -24,12 +24,11 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- task: VSBuild@1
+- task: DotNetCoreCLI@2
   inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:SkipInvalidConfigurations=true /t:pack'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: 'build'
+    projects: '$(solution)'
+    arguments: '/p:SkipInvalidConfigurations=true /t:Pack /p:Configuration=$(buildConfiguration)'
 
 - task: VSTest@2
   inputs:
