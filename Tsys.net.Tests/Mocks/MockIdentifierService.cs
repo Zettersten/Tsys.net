@@ -5,50 +5,12 @@ namespace Tsys.net.Tests.Mocks
 {
     public static class MockIdentifierService
     {
-        public static DeveloperModel MockDeveloperModel()
+        public static CustomerAddressIdentifierModel MockCustomerAddressIdentifierModel()
         {
-            return new DeveloperModel()
+            return new CustomerAddressIdentifierModel
             {
-                DeveloperId = "7",
-                VersionId = "014"
-            };
-        }
-
-        public static MerchantIdentifierModel MockMerchantIdentifierModel()
-        {
-            return new MerchantIdentifierModel
-            {
-                MerchantNumber = 999999999911,
-                AcquirerBIN = 999995,
-                StoreNumber = 0011,
-                TerminalNumber = 9911,
-                MerchantCategoryCode = 5999,
-                IndustryCode = "D",
-                MerchantName = "Internet Service Provider",
-                CityCode = "543211420",
-                MerchantState = "VA",
-                CustomerServicePhoneNumber = "800-1234567",
-                MerchantPhoneNumber = "800-1234567",
-                CountryCode = 840,
-                MerchantCity = "Gloucester",
-                DeviceCode = "Q",
-                MerchantEmail = "customer@mycompanydomain.com",
-                MerchantStreetAddress = "8320 Smithonian Internation Cir.",
-            };
-        }
-
-        public static TransactionIdentifierModel MockTransactionIdentifierModel()
-        {
-            return new TransactionIdentifierModel
-            {
-                CurrencyCode = 840,
-                LanguageIndicator = "00",
-                TransactionCode = "56",
-                TransactionSequenceNumber = 1,
-                RequestedACI = "Y",
-                CardholderIdCode = "N",
-                AccountDataSource = "@",
-                TransactionAmount = 100,
+                StreetAdress = "8320",
+                ZipCode = "85284"
             };
         }
 
@@ -61,12 +23,54 @@ namespace Tsys.net.Tests.Mocks
             };
         }
 
-        public static CustomerAddressIdentifierModel MockCustomerAddressIdentifierModel()
+        public static DeveloperModel MockDeveloperModel()
         {
-            return new CustomerAddressIdentifierModel
+            return new DeveloperModel()
             {
-                StreetAdress = "8320",
-                ZipCode = "85284"
+                DeveloperId = "7",
+                VersionId = "014"
+            };
+        }
+
+        public static TransactionFeeModel MockTransactionFeeModel()
+        {
+            return new TransactionFeeModel()
+            {
+                TransactionFeeAmount = 15
+            };
+        }
+
+        public static TsysAuthenticationMessageModel MockTsysMessageModel()
+        {
+            return new TsysAuthenticationMessageModel
+            {
+                TimeZoneDifferential = 705,
+                RecordFormat = "D",
+                ApplicationType = "4",
+                MessageDelimiter = ".",
+                MerchantNumber = 999999999911,
+                AcquirerBIN = "999995",
+                StoreNumber = 0011,
+                TerminalNumber = 9911,
+                MerchantCategoryCode = 5999,
+                IndustryCode = "D",
+                MerchantName = "Internet Service Provider",
+                CityCode = "543211420",
+                MerchantState = "VA",
+                CustomerServicePhoneNumber = "800-1234567",
+                MerchantPhoneNumber = "800-1234567",
+                CountryCode = 840,
+                MerchantCity = "Gloucester",
+                DeviceCode = "Q",
+                MerchantStreetAddress = "8320 Smithonian Internation Cir.",
+                CurrencyCode = 840,
+                LanguageIndicator = "00",
+                TransactionCode = "56",
+                TransactionSequenceNumber = 1,
+                RequestedACI = "Y",
+                CardholderIdCode = "N",
+                AccountDataSource = "@",
+                TransactionAmount = 10000,
             };
         }
     }

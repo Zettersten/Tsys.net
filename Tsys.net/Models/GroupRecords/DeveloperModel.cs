@@ -2,16 +2,29 @@
 
 namespace Tsys.net.Models.GroupRecords
 {
-    public struct DeveloperModel
+    public struct DeveloperModel : IGroupRecord
     {
-        private string Group3VersionNumber => "020";
+        public static DeveloperModel Empty
+        {
+            get
+            {
+                return new DeveloperModel();
+            }
+        }
 
         public string DeveloperId { get; set; }
 
         public string VersionId { get; set; }
 
+        public string Group3VersionNumber => "020";
+
         public override string ToString()
         {
+            if (DeveloperId == null || VersionId == null)
+            {
+                return string.Empty;
+            }
+
             return $"{Group3VersionNumber}{DeveloperId}{VersionId}{AsciiTable.FS}{AsciiTable.FS}";
         }
     }

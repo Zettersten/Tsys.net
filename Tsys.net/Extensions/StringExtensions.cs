@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Text;
+using Tsys.net.FieldValidators;
 using Tsys.net.Models.Constants;
 using Tsys.net.Models.Shared;
 
@@ -86,6 +87,28 @@ namespace Tsys.net.Extensions
             }
 
             return (lrc);
+        }
+
+        /// <summary>
+        ///   Numeric validator
+        /// </summary>
+        /// <param name = "value">Value to validate</param>
+        /// <returns>true if valid, false otherwise</returns>
+        public static bool IsNumeric(this string value)
+        {
+            var v = new NumericFieldValidator();
+            return v.IsValid(value);
+        }
+
+        /// <summary>
+        ///   Hex validator
+        /// </summary>
+        /// <param name = "value">Value to validate</param>
+        /// <returns>true if valid, false otherwise</returns>
+        public static bool IsHex(this string value)
+        {
+            var v = new HexFieldValidator();
+            return v.IsValid(value);
         }
     }
 }

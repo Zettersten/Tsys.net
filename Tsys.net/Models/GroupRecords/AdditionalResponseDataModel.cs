@@ -2,14 +2,27 @@
 
 namespace Tsys.net.Models.GroupRecords
 {
-    public struct AdditionalResponseDataModel
+    public struct AdditionalResponseDataModel : IGroupRecord
     {
-        private string Group3VersionNumber => "057";
+        public static AdditionalResponseDataModel Empty
+        {
+            get
+            {
+                return new AdditionalResponseDataModel();
+            }
+        }
 
         public string AdditionalResponseData { get; set; }
 
+        public string Group3VersionNumber => "057";
+
         public override string ToString()
         {
+            if (AdditionalResponseData == null)
+            {
+                return string.Empty;
+            }
+
             return $"{Group3VersionNumber}{AdditionalResponseData}{AsciiTable.FS}";
         }
     }

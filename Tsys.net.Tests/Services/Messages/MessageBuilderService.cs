@@ -13,16 +13,15 @@ namespace Tsys.net.Tests.Services.Messages
         [Fact(DisplayName = "7.1.1.2 - Retail/restaurant - manual AVS - request")]
         public void D_Format_Authorization_Request_Message_Retail_And_Restaurant()
         {
-            MerchantIdentifierModel merchant = MockIdentifierService.MockMerchantIdentifierModel();
-            TransactionIdentifierModel transaction = MockIdentifierService.MockTransactionIdentifierModel();
-            CustomerIdentifierModel customer = MockIdentifierService.MockCustomerIdentifierModel();
-            CustomerAddressIdentifierModel address = MockIdentifierService.MockCustomerAddressIdentifierModel();
-            net.Services.Messages.MessageBuilderService messageService = MockMessageService.MockMessageBuilderService();
+            var message = MockIdentifierService.MockTsysMessageModel();
+            var customer = MockIdentifierService.MockCustomerIdentifierModel();
+            var address = MockIdentifierService.MockCustomerAddressIdentifierModel();
+            var messageService = MockMessageService.MockMessageBuilderService();
+            var developer = MockIdentifierService.MockDeveloperModel();
+            var transactionFee = MockIdentifierService.MockTransactionFeeModel();
 
-            DeveloperModel developer = MockIdentifierService.MockDeveloperModel();
-
-            string result = messageService
-                .BuildManualAVSRequestMessage(merchant, transaction, customer, address, developer);
+            var result = messageService
+                .BuildManualAVSRequestMessage(message, customer, address, developer, transactionFee);
 
             Assert.Contains("@", result);
 

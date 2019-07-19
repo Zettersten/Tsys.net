@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using System;
 using System.Text;
 using Tsys.net.Extensions;
 using Tsys.net.Models;
@@ -18,24 +17,24 @@ namespace Tsys.net.Services.Messages
             this.logger = logger;
         }
 
-        public string BuildManualAVSRequestMessage(MerchantIdentifierModel merchant, TransactionIdentifierModel transaction, CustomerIdentifierModel customer, CustomerAddressIdentifierModel address, DeveloperModel developer)
+        public string BuildManualAVSRequestMessage(TsysAuthenticationMessageModel transaction, CustomerIdentifierModel customer, CustomerAddressIdentifierModel address, DeveloperModel developer, TransactionFeeModel transactionFee)
         {
             StringBuilder stringBuilder = new StringBuilder();
 
             string result = stringBuilder
                 .BeginTsysMessage(MessageConstants.INTERLEAVED_AUTHORIZATION_PER_CONNECTION, MessageConstants.CREDIT_CARD_AUTHORIZATION_REQUEST_MESSAGE)
-                .Append(merchant.AcquirerBIN)
-                .Append(merchant.FormatMerchantNumber())
-                .Append(merchant.FormatStoreNumber())
-                .Append(merchant.TerminalNumber)
-                .Append(merchant.DeviceCode)
-                .Append(merchant.IndustryCode)
+                .Append(transaction.AcquirerBIN)
+                .Append(transaction.FormatMerchantNumber())
+                .Append(transaction.FormatStoreNumber())
+                .Append(transaction.TerminalNumber)
+                .Append(transaction.DeviceCode)
+                .Append(transaction.IndustryCode)
                 .Append(transaction.CurrencyCode)
-                .Append(merchant.CountryCode)
-                .Append(merchant.FormatCityCode())
+                .Append(transaction.CountryCode)
+                .Append(transaction.FormatCityCode())
                 .Append(transaction.LanguageIndicator)
                 .Append(MessageConstants.TimeZoneDifferential.EST)
-                .Append(merchant.MerchantCategoryCode)
+                .Append(transaction.MerchantCategoryCode)
                 .Append(transaction.RequestedACI)
                 .Append(transaction.FormatTransactionSequenceNumber())
                 .Append(transaction.TransactionCode)
@@ -50,23 +49,20 @@ namespace Tsys.net.Services.Messages
                 .Append(AsciiTable.FS)
                 .Append(AsciiTable.FS)
                 .Append(AsciiTable.FS)
-                .Append(merchant.FormatMerchantName())
-                .Append(merchant.FormatMerchantCity())
-                .Append(merchant.FormatMerchantState())
+                .Append(transaction.FormatMerchantName())
+                .Append(transaction.FormatMerchantCity())
+                .Append(transaction.FormatMerchantState())
                 .Append(AsciiTable.FS)
                 .Append(AsciiTable.FS)
                 .Append(AsciiTable.FS)
                 .Append(developer)
+                .Append(AsciiTable.GS)
+                .Append(transactionFee)
                 .EndTsysMessage();
 
             logger.LogInformation(result);
 
             return result;
-        }
-
-        public (MerchantIdentifierModel merchant, TransactionIdentifierModel transaction, CustomerIdentifierModel customer, CustomerAddressIdentifierModel address) ReverseBuildManualAVSRequestMessage(string message)
-        {
-            throw new NotImplementedException();
         }
     }
 }

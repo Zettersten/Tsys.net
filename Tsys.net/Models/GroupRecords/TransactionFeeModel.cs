@@ -1,10 +1,17 @@
 ﻿using Tsys.net.Models.Shared;
+using Tsys.net.Models.Types;
 
 namespace Tsys.net.Models.GroupRecords
 {
-    public struct TransactionFeeModel
+    public struct TransactionFeeModel : IGroupRecord
     {
-        private string Group3VersionNumber => "025";
+        public static TransactionFeeModel Empty
+        {
+            get
+            {
+                return new TransactionFeeModel();
+            }
+        }
 
         /// <summary>
         /// Transaction Fee Amount is used in PIN POS and credit transactions to carry the acquirerassessed
@@ -14,11 +21,20 @@ namespace Tsys.net.Models.GroupRecords
         /// credit and where “nnnnnnnn” is the numeric fee amount with the decimal implied.Example:
         /// “D00000150” is a $1.50 transaction fee amount debited to the cardholder's account.
         /// </summary>
-        public string TransactionFeeAmount { get; set; }
+        public long TransactionFeeAmount { get; set; }
+
+        public bool IsCredit { get; set; }
+
+        public string Group3VersionNumber => "025";
 
         public override string ToString()
         {
-            return $"{Group3VersionNumber}{TransactionFeeAmount}{AsciiTable.FS}";
+            if (TransactionFeeAmount == 0)
+            {
+                return string.Empty;
+            }
+
+            return $"{Group3VersionNumber}{(IsCredit ? AdditionalAmountSignTypeModel.PositiveBalance : AdditionalAmountSignTypeModel.NegativeBalance)}{TransactionFeeAmount.ToString().PadLeft(8, '0')}{AsciiTable.FS}";
         }
     }
 }

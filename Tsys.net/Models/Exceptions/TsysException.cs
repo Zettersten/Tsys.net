@@ -7,8 +7,6 @@ namespace Tsys.net.Models.Exceptions
     [Serializable]
     public class TsysException : Exception
     {
-        public string ResourceReferenceProperty { get; set; }
-
         public TsysException()
         {
         }
@@ -33,6 +31,8 @@ namespace Tsys.net.Models.Exceptions
         {
             ResourceReferenceProperty = info.GetString(nameof(ResourceReferenceProperty));
         }
+
+        public string ResourceReferenceProperty { get; set; }
 
         [SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
