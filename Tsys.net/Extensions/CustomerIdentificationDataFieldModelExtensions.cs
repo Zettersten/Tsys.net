@@ -24,7 +24,7 @@ namespace Tsys.net.Extensions
             return string.Empty;
         }
 
-        public static CustomerIdentificationDataFieldModel Deserialize<T>(this string cardholderIdCodeType, string value) where T : CustomerIdentificationDataFieldModel
+        public static CustomerIdentificationDataFieldModel Deserialize<T>(this string value, string cardholderIdCodeType = CardholderIdCodeTypeModel.CardholderSignatureNoPinPadAvailable) where T : CustomerIdentificationDataFieldModel
         {
             var result = new CustomerIdentificationDataFieldModel { CardholderIdCode = cardholderIdCodeType };
 

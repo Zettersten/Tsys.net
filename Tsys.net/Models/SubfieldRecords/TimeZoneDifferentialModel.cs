@@ -17,6 +17,11 @@ namespace Tsys.net.Models.SubfieldRecords
             };
         }
 
+        public static implicit operator TimeZoneDifferentialModel(string value)
+        {
+            return TimeZonDifferentialModelExtensions.Deserialize<TimeZoneDifferentialModel>(value);
+        }
+
         public override string ToString()
         {
             return this.Serialize();

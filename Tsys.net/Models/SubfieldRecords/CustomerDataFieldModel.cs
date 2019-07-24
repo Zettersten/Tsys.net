@@ -1,10 +1,11 @@
 ﻿using Tsys.net.Extensions;
+using Tsys.net.Models.Types;
 
 namespace Tsys.net.Models.SubfieldRecords
 {
     public class CustomerDataFieldModel
     {
-        public string AccountDataSource { get; set; }
+        public AccountDataSourceTypeModel AccountDataSource { get; set; }
 
         public string MSRTrack01DataWithoutSentinals { get; set; }
 
@@ -51,6 +52,11 @@ namespace Tsys.net.Models.SubfieldRecords
                 AccountDataSource = accountDataSourceType,
                 EncryptedMSRTrackData = trackData,
             };
+        }
+
+        public static implicit operator CustomerDataFieldModel(string value)
+        {
+            return CustomerDataFieldModelExtensions.Deserialize<CustomerDataFieldModel>(value);
         }
 
         public override string ToString()

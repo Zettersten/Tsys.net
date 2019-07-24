@@ -20,6 +20,37 @@ namespace Tsys.net.Models.Types
         public const string ManuallyKeyedTerminalHasNoCardReadingCapability = "@";
         public const string ChipCardTransProcessedAsMagStripe_NoEmvAppOnTerminal = "W";
         public const string ChipCardTransProcessedAsMagStripe_CardOrTerminalFailure = "Z";
+        private readonly string value;
+
+        public AccountDataSourceTypeModel(string value)
+        {
+            this.value = value;
+        }
+
+        public static implicit operator AccountDataSourceTypeModel(string value)
+        {
+            return new AccountDataSourceTypeModel(value);
+        }
+
+        public static bool operator ==(AccountDataSourceTypeModel firstValue, string secondValue)
+        {
+            return firstValue.value == secondValue;
+        }
+
+        public static bool operator !=(AccountDataSourceTypeModel firstValue, string secondValue)
+        {
+            return firstValue.value == secondValue;
+        }
+
+        public static bool operator ==(string firstValue, AccountDataSourceTypeModel secondValue)
+        {
+            return firstValue == secondValue.value;
+        }
+
+        public static bool operator !=(string firstValue, AccountDataSourceTypeModel secondValue)
+        {
+            return firstValue == secondValue.value;
+        }
 
         public static string GetName(string typeValue)
         {
@@ -76,6 +107,11 @@ namespace Tsys.net.Models.Types
                 default:
                     throw new ArgumentException(nameof(typeValue));
             }
+        }
+
+        public override string ToString()
+        {
+            return value.ToString();
         }
     }
 }

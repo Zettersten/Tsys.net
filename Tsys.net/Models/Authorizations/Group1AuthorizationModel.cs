@@ -1,4 +1,7 @@
-﻿using Tsys.net.Models.SubfieldRecords;
+﻿using System;
+using System.Text;
+using Tsys.net.Extensions;
+using Tsys.net.Models.SubfieldRecords;
 using Tsys.net.Models.Types;
 
 namespace Tsys.net.Models.Authorizations
@@ -83,7 +86,7 @@ namespace Tsys.net.Models.Authorizations
         /// <summary>
         /// #1 A/N 4.69 (DeviceIsCpsMeritCapableOrCreditOrOffline)
         /// </summary>
-        public RequestAciType RequestedACI { get; set; }
+        public RequestAciTypeModel RequestedACI { get; set; }
 
         /// <summary>
         /// #4 NUM 4.92
@@ -93,32 +96,32 @@ namespace Tsys.net.Models.Authorizations
         /// <summary>
         /// #2 A/N 4.89 (Purchase)
         /// </summary>
-        public TransactionCodeType TransactionCode { get; set; }
+        public TransactionCodeTypeModel TransactionCode { get; set; }
 
         /// <summary>
         /// #1 A/N 4.23
         /// </summary>
-        public CardholderIdCodeType CardholderIdentificationCode { get; set; }
+        public CardholderIdCodeTypeModel CardholderIdentificationCode { get; set; }
 
         /// <summary>
         /// #1 A/N 4.1
         /// </summary>
-        public AccountDataSourceType AccountDataSource { get; set; }
+        public AccountDataSourceTypeModel AccountDataSource { get; set; }
 
         /// <summary>
         /// #1 - 79 A/N 4.31
         /// </summary>
-        public CustomerDataField CustomerData { get; set; }
+        public CustomerDataFieldModel CustomerData { get; set; }
 
         /// <summary>
         /// #0, 128 A/N 4.43
         /// </summary>
-        public CardholderIdentificationDataField CardholderIdentificationData { get; set; }
+        public CustomerIdentificationDataFieldModel CardholderIdentificationData { get; set; }
 
         /// <summary>
         /// #0, 6 NUM 4.66 used for Check Authorizations and Private Label
         /// </summary>
-        public ReceivingInstitutionIdType ReceivingInstitutionId { get; set; }
+        public ReceivingInstitutionIdTypeModel ReceivingInstitutionId { get; set; }
 
         /// <summary>
         /// #1 - 12 NUM 4.88
@@ -133,21 +136,47 @@ namespace Tsys.net.Models.Authorizations
         /// <summary>
         /// #0, 4 A/N 4.54
         /// </summary>
-        public MarketSpecificDataField MarketSpecificData { get; set; }
+        public MarketSpecificDataFieldModel MarketSpecificData { get; set; }
 
         /// <summary>
         /// #0, 40 A/N 4.17
         /// </summary>
-        public CardAcceptorDataField CardAcceptorData { get; set; }
+        public CardAcceptorDataFieldModel CardAcceptorData { get; set; }
 
         /// <summary>
         /// #15 A/N 4.75 see Transaction ID in G1 Auth Response
         /// </summary>
-        public string ReversalAndIncrementalTransactionID { get; set; }
+        public string ReversalAndIncrementalTransactionId { get; set; }
 
         /// <summary>
         /// #0, 30 A/N 4.73
         /// </summary>
-        public ReversalAndCancelDataI ReversalAndCancelData { get; set; }
+        public ReversalAndCancelDataIModel ReversalAndCancelData { get; set; }
+
+        public static Group1AuthorizationModel NewG1AuthorizationMessageRequest(uint acquirerBin, TransactionCodeTypeModel transactionCodeType, uint transactionSequence, long amount, long cashback)
+        {
+            return new Group1AuthorizationModel
+            {
+                RecordFormat = transactionCodeType.IsDebitCardTransaction() ? RecordFormatTypeModel.DebitEbtRequest : RecordFormatTypeModel.CreditCardAuthorizationRequest,
+                ApplicationType = ApplicationIndicatorTypeModel.MultipleAuthorizationsPerConnectionFullDuplexInterleaved,
+                MessageDelimiter = MessageDelimiterTypeModel.DefaultDelimiter,
+                AcquirerBIN = acquirerBin,
+                TransactionCode = transactionCodeType,
+                TransactionSequenceNumber = transactionSequence,
+                TransactionAmount = amount,
+                SecondaryAmount = cashback,
+                MarketSpecificData = MarketSpecificDataFieldModel.NewMarketSpecificDataFieldModel(PrestigiousPropertyTypeModel.AutoRentalOrNonParticipatingProperty, MarketSpecificDataTypeModel.OtherIndustries, 0),
+                ReversalAndCancelData = ReversalAndCancelDataIModel.NewReversalAndCancelDataI("      ", DateTimeOffset.Now, UintExtensions.GenerateRetrievalReferenceNumber(0))
+            };
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder(512);
+
+            this.CopyToBuffer(ref sb);
+
+            return sb.ToString();
+        }
     }
 }

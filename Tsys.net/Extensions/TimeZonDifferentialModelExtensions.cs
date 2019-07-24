@@ -12,7 +12,7 @@ namespace Tsys.net.Extensions
             return string.Format("{0}{1}", timeZoneDifferential.TimeZoneDirection, timeZoneDifferential.TimeZoneDifference.ToString().PadLeft(2, '0'));
         }
 
-        public static TimeZoneDifferentialModel Deserialize(string value)
+        public static TimeZoneDifferentialModel Deserialize<T>(string value) where T : TimeZoneDifferentialModel
         {
             var result = new TimeZoneDifferentialModel();
 

@@ -20,6 +20,17 @@ namespace Tsys.net.Models.Types
         public const string PersonalIdentificationNumber32CharStaticKey = "S";
         public const string CardholderSignatureTerminalHasPinPad = "Z";
         public const string CardholderSignatureNoPinPadAvailable = "@";
+        private readonly string value;
+
+        public CardholderIdCodeTypeModel(string value)
+        {
+            this.value = value;
+        }
+
+        public static implicit operator CardholderIdCodeTypeModel(string value)
+        {
+            return new CardholderIdCodeTypeModel(value);
+        }
 
         public static string GetName(string typeValue)
         {
@@ -76,6 +87,11 @@ namespace Tsys.net.Models.Types
                 default:
                     throw new ArgumentException(nameof(typeValue));
             }
+        }
+
+        public override string ToString()
+        {
+            return value.ToString();
         }
     }
 }

@@ -12,13 +12,5 @@
         {
             get { return new AsciiFormatter(); }
         }
-
-        /// <summary>
-        ///   Get a Binary Formatter
-        /// </summary>
-        public static IFormatter Binary
-        {
-            get { return new BinaryFormatter(); }
-        }
     }
 }

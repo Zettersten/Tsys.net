@@ -1,8 +1,4 @@
 ﻿using System.Linq;
-using System.Text;
-using Tsys.net.FieldValidators;
-using Tsys.net.Models.Constants;
-using Tsys.net.Models.Shared;
 
 namespace Tsys.net.Extensions
 {
@@ -35,40 +31,9 @@ namespace Tsys.net.Extensions
                 value = value.Replace(countryCode, string.Empty).Trim();
             }
 
-            string digitsOnly = new string(value.Where(x => char.IsDigit(x)).ToArray());
-            long phoneNumber = long.Parse(digitsOnly);
+            long phoneNumber = value.ToNumeric();
 
             return string.Format("{0:###-#######}", phoneNumber);
-        }
-
-        /// <summary>
-        /// Build start of TSYS message
-        /// </summary>
-        /// <param name="applicationType">
-        /// The TSYS Acquiring Solutions authorization system supports a number of communication
-        /// interface applications (see Table 4.5, Table 4.4 for record formats and version numbers).
-        /// These applications include:
-        /// </param>
-        /// <param name="recordFormat">
-        /// This one-character field identifies the message format with the TSYS Acquiring Solutions
-        /// system(see Table 4.5, Table 4.4, Table 4.6 for record formats and version numbers). The
-        /// second-generation authorization format is specified by placing one of the defined values in the
-        /// record format field.Table 5.67 provides a brief summary of the current formats.
-        /// </param>
-        /// <returns></returns>
-        public static StringBuilder BeginTsysMessage(this StringBuilder stringBuilder, string applicationType, string recordFormat)
-        {
-            return stringBuilder.Append($"{recordFormat}{applicationType}{MessageConstants.MessageDelimiter}");
-        }
-
-        /// <summary>
-        /// Build end of TSYS message
-        /// </summary>
-        /// <param name="stringBuilder">TSYS message body</param>
-        /// <returns></returns>
-        public static string EndTsysMessage(this StringBuilder stringBuilder)
-        {
-            return $"{AsciiTable.STX}{stringBuilder}{AsciiTable.ETX}{GetLRC(stringBuilder + AsciiTable.ETX)}";
         }
 
         /// <summary>
@@ -90,25 +55,61 @@ namespace Tsys.net.Extensions
         }
 
         /// <summary>
-        ///   Numeric validator
+        /// Convert string to number
         /// </summary>
-        /// <param name = "value">Value to validate</param>
-        /// <returns>true if valid, false otherwise</returns>
-        public static bool IsNumeric(this string value)
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static long ToNumeric(this string value)
         {
-            var v = new NumericFieldValidator();
-            return v.IsValid(value);
+            var numbersOnly = new string(value.Where(x => char.IsDigit(x)).ToArray());
+
+            if (long.TryParse(value, out long result))
+            {
+                return result;
+            }
+
+            return 0;
+        }
+
+        public static string PadLeft(this int value, int padLength, char padChar)
+        {
+            return value.ToString().PadLeft(padLength, padChar);
         }
 
         /// <summary>
-        ///   Hex validator
+        /// format street address
         /// </summary>
-        /// <param name = "value">Value to validate</param>
-        /// <returns>true if valid, false otherwise</returns>
-        public static bool IsHex(this string value)
+        /// <param name="streetAddress"></param>
+        /// <returns></returns>
+        public static string FormatStreetAddress(this string streetAddress)
         {
-            var v = new HexFieldValidator();
-            return v.IsValid(value);
+            string value = streetAddress;
+            string digitsAndSpacesOnly = new string(value.Where(x => char.IsDigit(x) || char.IsWhiteSpace(x)).ToArray());
+
+            return digitsAndSpacesOnly.Truncate(20).ToUpper().Trim();
+        }
+
+        /// <summary>
+        /// Format Merchant City Code
+        /// </summary>
+        /// <param name="cityCode"></param>
+        /// <returns></returns>
+        public static string FormatCityCode(this string cityCode)
+        {
+            string value = cityCode;
+            return $"{value}".PadRight(9, ' ');
+        }
+
+        /// <summary>
+        /// Format Merchant Email Address
+        /// </summary>
+        /// <param name="merchantEmail"></param>
+        /// <returns></returns>
+        public static string FormatMerchantEmailAddress(this string merchantEmail)
+        {
+            string value = merchantEmail;
+
+            return value.Truncate(20).ToUpper().Trim();
         }
     }
 }

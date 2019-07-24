@@ -26,6 +26,11 @@ namespace Tsys.net.Models.SubfieldRecords
             };
         }
 
+        public static implicit operator CustomerIdentificationDataFieldModel(string value)
+        {
+            return CustomerIdentificationDataFieldModelExtensions.Deserialize<CustomerIdentificationDataFieldModel>(value);
+        }
+
         public override string ToString()
         {
             return this.Serialize();

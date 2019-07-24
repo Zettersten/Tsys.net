@@ -9,7 +9,7 @@ namespace Tsys.net.Extensions
     {
         public static string Serialize(this CustomerDataFieldModel model)
         {
-            switch (model.AccountDataSource)
+            switch (model.AccountDataSource.ToString())
             {
                 case AccountDataSourceTypeModel.MicrDataWasAcquiredByOcrReader:
                     return string.Format("{0}{1}{2}", AsciiTable.FS, AsciiTable.FS, model.MICRData);
@@ -48,12 +48,12 @@ namespace Tsys.net.Extensions
             return string.Format("{0}{1}{2}{3}{4}", model.ManuallyEnteredAccountNumber, AsciiTable.FS, model.ManuallyEnteredExpirationMonth.ToString().PadLeft(2, '0'), model.ManuallyEnteredExpirationYear.ToString().PadLeft(2, '0'), AsciiTable.FS);
         }
 
-        public static CustomerDataFieldModel Deserialize<T>(this string accountDataSourceType, string value) where T : CustomerDataFieldModel
+        public static CustomerDataFieldModel Deserialize<T>(this string value, string accountDataSourceType = AccountDataSourceTypeModel.SpaceOrEmptyAccountDataSource) where T : CustomerDataFieldModel
         {
             var result = new CustomerDataFieldModel { AccountDataSource = accountDataSourceType };
             var dataFields = value.Split(AsciiTable.FS);
 
-            switch (accountDataSourceType)
+            switch (accountDataSourceType.ToString())
             {
                 case AccountDataSourceTypeModel.MicrDataWasAcquiredByOcrReader:
                     break;
