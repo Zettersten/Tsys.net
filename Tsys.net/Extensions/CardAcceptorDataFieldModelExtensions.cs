@@ -12,11 +12,11 @@ namespace Tsys.net.Extensions
         {
             var result = new CardAcceptorDataFieldModel
             {
-                CustomerServicePhoneNumber = "",
+                CustomerServicePhoneNumber = 0,
                 MerchantCity = "",
                 MerchantName = "",
                 MerchantState = "",
-                TicketNumber = 0
+                TicketNumber = ""
             };
 
             if (40 > value.Length)
@@ -35,7 +35,7 @@ namespace Tsys.net.Extensions
                 case TransactionCodeTypeModel.CardholderFundsTransferCardNotPresent:
                 case TransactionCodeTypeModel.CardholderFundsTransferCardNotPresentRepeat:
 
-                    result.CustomerServicePhoneNumber = value.Substring(25, 38).Trim().Replace("-", string.Empty);
+                    result.CustomerServicePhoneNumber = long.Parse(value.Substring(25, 38).Trim().Replace("-", string.Empty));
 
                     break;
 

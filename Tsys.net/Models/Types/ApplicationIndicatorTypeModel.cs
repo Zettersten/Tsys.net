@@ -5,19 +5,12 @@ namespace Tsys.net.Models.Types
     public struct ApplicationIndicatorTypeModel
     {
         public const uint SingleAuthorizationPerConnection = 0;
-
         public const uint SingleBatchPerConnection = 1;
-
         public const uint MutlipleAuthorizationsPerConnectionSingleThreaded = 2;
-
         public const uint MultipleBatchPerConnection = 3;
-
         public const uint MultipleAuthorizationsPerConnectionFullDuplexInterleaved = 4;
-
         public const uint VitalCentralDataCapture05 = 5;
-
         public const uint VitalCentralDataCapture06 = 6;
-
         public const uint Reserved = 9;
 
         private readonly uint value;

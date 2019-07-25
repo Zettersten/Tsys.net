@@ -689,7 +689,7 @@ namespace Tsys.net.Models.Types
 
         public override string ToString()
         {
-            return base.ToString();
+            return value.ToString();
         }
     }
 }

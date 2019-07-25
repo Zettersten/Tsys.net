@@ -84,5 +84,50 @@ namespace Tsys.net.Extensions
 
             return result;
         }
+
+        public static CardIssuerTypeModel GetCardIssuerType(this CustomerDataFieldModel model)
+        {
+            var accountNumer = model.ManuallyEnteredAccountNumber.ToDigits();
+
+            if (accountNumer.Length < 6)
+            {
+                return CardIssuerTypeModel.EmptyCardType;
+            }
+
+            var cardNumber = accountNumer.ToNumeric();
+
+            if (cardNumber >= 400000 && cardNumber <= 499999)
+            {
+                return CardIssuerTypeModel.Visa;
+            }
+            else if ((cardNumber >= 510000 && cardNumber <= 559999) || (cardNumber >= 360000 && cardNumber <= 369999))
+            {
+                return CardIssuerTypeModel.Mastercard;
+            }
+            else if ((cardNumber >= 340000 && cardNumber <= 349999) || (cardNumber >= 370000 && cardNumber <= 379999))
+            {
+                return CardIssuerTypeModel.Amex;
+            }
+            else if (cardNumber >= 601100 && cardNumber <= 60119)
+            {
+                return CardIssuerTypeModel.Discover;
+            }
+            else if ((cardNumber >= 300000 && cardNumber <= 305999) || (cardNumber >= 380000 && cardNumber <= 389999))
+            {
+                return CardIssuerTypeModel.Diners;
+            }
+            else if (cardNumber >= 352800 && cardNumber <= 358999)
+            {
+                return CardIssuerTypeModel.Jcb;
+            }
+            else if (cardNumber == 627571)
+            {
+                return CardIssuerTypeModel.Ets;
+            }
+            else
+            {
+                return CardIssuerTypeModel.Unrecognized;
+            }
+        }
     }
 }

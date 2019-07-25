@@ -18,6 +18,17 @@ namespace Tsys.net.Models.Types
         public const string AmountDental = "4X"; // (Visa authorization request only)
         public const string AmountCashOver = "80"; // Discover only
         public const string OriginalAmountCashOver = "81"; // Discover Only
+        private readonly string value;
+
+        public AdditionalAmountTypeModel(string value)
+        {
+            this.value = value;
+        }
+
+        public static implicit operator AdditionalAmountTypeModel(string value)
+        {
+            return new AdditionalAmountTypeModel(value);
+        }
 
         public static string GetName(string typeValue)
         {
@@ -68,6 +79,11 @@ namespace Tsys.net.Models.Types
                 default:
                     throw new ArgumentException(nameof(typeValue));
             }
+        }
+
+        public override string ToString()
+        {
+            return value;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Tsys.net.Extensions
                    (TransactionCodeTypeModel.PurchaseCardNotPresent == group1Authorization.TransactionCode || TransactionCodeTypeModel.PurchaseCardNotPresentRepeat == group1Authorization.TransactionCode);
         }
 
-        public static void SetTerminalIdentification(this Group1AuthorizationModel group1Authorization, uint merchantNumber, uint storeNumber, uint terminalNumber, DeviceCodeTypeModel deviceCode, IndustryCodeTypeModel industryCode, MerchantCategoryTypeModel merchantCategory)
+        public static void SetTerminalIdentification(this Group1AuthorizationModel group1Authorization, long merchantNumber, uint storeNumber, uint terminalNumber, DeviceCodeTypeModel deviceCode, IndustryCodeTypeModel industryCode, MerchantCategoryTypeModel merchantCategory)
         {
             group1Authorization.MerchantNumber = merchantNumber;
             group1Authorization.StoreNumber = storeNumber;
@@ -42,7 +42,7 @@ namespace Tsys.net.Extensions
             group1Authorization.CardholderIdentificationData = cardholderIdentification;
         }
 
-        public static void SetCardAcceptorData(this Group1AuthorizationModel group1Authorization, string name, string city, string state, uint ticket, string phone)
+        public static void SetCardAcceptorData(this Group1AuthorizationModel group1Authorization, string name, string city, string state, string ticket, long phone)
         {
             group1Authorization.CardAcceptorData = CardAcceptorDataFieldModel.NewCardAcceptorDataField(name, city, state, ticket, phone);
         }

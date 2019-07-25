@@ -1,5 +1,7 @@
-﻿using Tsys.net.Models.Authorizations;
-using Tsys.net.Extensions;
+﻿using System.Collections.Generic;
+using Tsys.net.Models.GroupRecords;
+using Tsys.net.Models.Messages;
+using Tsys.net.Tests.Mocks;
 
 namespace Tsys.net.Console
 {
@@ -7,8 +9,10 @@ namespace Tsys.net.Console
     {
         private static void Main(string[] args)
         {
-            var group1Auth = Group1AuthorizationModel
-                .NewG1AuthorizationMessageRequest();
+            var authMessage = AuthorizationRequestMessageModel
+                .NewAuthorizationMessageRequest("", MockIdentifierService.Group1Authorization_Retail, null, MockIdentifierService.StandardGroup3Records(null));
+
+            System.Console.WriteLine(authMessage);
 
             System.Console.ReadKey();
         }

@@ -31,7 +31,7 @@ namespace Tsys.net.Models.Authorizations
         /// <summary>
         /// #12 NUM 4.59 (999999999911)
         /// </summary>
-        public uint MerchantNumber { get; set; }
+        public long MerchantNumber { get; set; }
 
         /// <summary>
         /// #4 NUM 4.81 (1515)

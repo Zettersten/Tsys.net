@@ -8,14 +8,12 @@ namespace Tsys.net.Extensions
     {
         public static uint GenerateRetrievalReferenceNumber(this uint value)
         {
-            var now = DateTime.UtcNow;
-            var julianDate = new JulianCalendar();
-            var julianDay = julianDate.GetDayOfYear(now);
+            if (value == 0)
+            {
+                value = GenerateSystemTraceAuditNumber();
+            }
 
-            var refString = string.Format("{0}", now.Year.PadLeft(4, '0'), julianDay.PadLeft(3, '0'), value);
-            var parsedRef = refString.Substring(3, 15).PadLeft(12, '0');
-
-            return uint.Parse(parsedRef);
+            return value;
         }
 
         public static long GetNanoTime()

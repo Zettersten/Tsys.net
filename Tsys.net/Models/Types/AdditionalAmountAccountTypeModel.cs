@@ -12,6 +12,17 @@ namespace Tsys.net.Models.Types
         public const uint StoredValueAccount = 60;
         public const uint CashBenefitsAccount = 96; // (for use by Electronic Benefits Transfer transactions only)
         public const uint FoodStampsAccount = 98; // (for use by Electronic Benefits Transfer transactions only)
+        private readonly uint value;
+
+        public AdditionalAmountAccountTypeModel(uint value)
+        {
+            this.value = value;
+        }
+
+        public static implicit operator AdditionalAmountAccountTypeModel(uint value)
+        {
+            return new AdditionalAmountAccountTypeModel(value);
+        }
 
         public static string GetName(uint typeValue)
         {
@@ -44,6 +55,11 @@ namespace Tsys.net.Models.Types
                 default:
                     throw new ArgumentException(nameof(typeValue));
             }
+        }
+
+        public override string ToString()
+        {
+            return value.ToString();
         }
     }
 }

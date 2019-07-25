@@ -33,7 +33,12 @@ namespace Tsys.net.Extensions
 
             long phoneNumber = value.ToNumeric();
 
-            return string.Format("{0:###-#######}", phoneNumber);
+            return phoneNumber.FormatPhoneNumber();
+        }
+
+        public static string FormatPhoneNumber(this long value)
+        {
+            return string.Format("{0:###-#######}", value);
         }
 
         /// <summary>
@@ -69,6 +74,11 @@ namespace Tsys.net.Extensions
             }
 
             return 0;
+        }
+
+        public static string ToDigits(this string value)
+        {
+            return new string(value.Where(x => char.IsDigit(x)).ToArray());
         }
 
         public static string PadLeft(this int value, int padLength, char padChar)

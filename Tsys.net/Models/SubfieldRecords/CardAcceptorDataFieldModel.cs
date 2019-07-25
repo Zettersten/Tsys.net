@@ -11,11 +11,11 @@ namespace Tsys.net.Models.SubfieldRecords
 
         public string MerchantState { get; set; }
 
-        public uint TicketNumber { get; set; }
+        public string TicketNumber { get; set; }
 
-        public string CustomerServicePhoneNumber { get; set; }
+        public long CustomerServicePhoneNumber { get; set; }
 
-        public static CardAcceptorDataFieldModel NewCardAcceptorDataField(string merchantName, string merchantCity, string merchantState, uint ticketNumber, string customerServicePhoneNumber)
+        public static CardAcceptorDataFieldModel NewCardAcceptorDataField(string merchantName, string merchantCity, string merchantState, string ticketNumber, long customerServicePhoneNumber)
         {
             return new CardAcceptorDataFieldModel
             {
