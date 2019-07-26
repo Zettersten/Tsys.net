@@ -1,4 +1,6 @@
-﻿using Tsys.net.Models;
+﻿using System;
+using Tsys.net.Extensions;
+using Tsys.net.Models;
 using Tsys.net.Models.GroupRecords;
 
 namespace Tsys.net.Tests.Mocks
@@ -18,10 +20,10 @@ namespace Tsys.net.Tests.Mocks
         {
             return new MerchantIdentifierModel
             {
-                MerchantNumber = 394750535319,
-                AcquirerBIN = 433066,
-                StoreNumber = 7619,
-                TerminalNumber = 3268,
+                MerchantNumber = ("PROD_MERCHANT_NUMBERS").GetEnviromentVariablesAt<ulong>(0),
+                AcquirerBIN = ("PROD_MERCHANT_BINS").GetEnviromentVariablesAt<uint>(0),
+                StoreNumber = ("PROD_MERCHANT_NUMBERS").GetEnviromentVariablesAt<uint>(0),
+                TerminalNumber = ("PROD_MERCHANT_TERMINAL_NUMBERS").GetEnviromentVariablesAt<uint>(0),
                 MerchantCategoryCode = 8999,
                 IndustryCode = "R",
                 MerchantName = "ETS CORPORATION",
@@ -41,10 +43,10 @@ namespace Tsys.net.Tests.Mocks
         {
             return new MerchantIdentifierModel
             {
-                MerchantNumber = 888000000835,
-                AcquirerBIN = 999995,
-                StoreNumber = 5999,
-                TerminalNumber = 1515,
+                MerchantNumber = ("PROD_MERCHANT_NUMBERS").GetEnviromentVariablesAt<ulong>(1),
+                AcquirerBIN = ("PROD_MERCHANT_BINS").GetEnviromentVariablesAt<uint>(1),
+                StoreNumber = ("PROD_MERCHANT_NUMBERS").GetEnviromentVariablesAt<uint>(1),
+                TerminalNumber = ("PROD_MERCHANT_TERMINAL_NUMBERS").GetEnviromentVariablesAt<uint>(1),
                 MerchantCategoryCode = 5999,
                 IndustryCode = "R",
                 MerchantName = "ETS CORPORATION",
@@ -64,10 +66,10 @@ namespace Tsys.net.Tests.Mocks
         {
             return new MerchantIdentifierModel
             {
-                MerchantNumber = 000000000002,
-                AcquirerBIN = 433066,
-                StoreNumber = 0002,
-                TerminalNumber = 7858,
+                MerchantNumber = ("PROD_MERCHANT_NUMBERS").GetEnviromentVariablesAt<ulong>(2),
+                AcquirerBIN = ("PROD_MERCHANT_BINS").GetEnviromentVariablesAt<uint>(2),
+                StoreNumber = ("PROD_MERCHANT_NUMBERS").GetEnviromentVariablesAt<uint>(2),
+                TerminalNumber = ("PROD_MERCHANT_TERMINAL_NUMBERS").GetEnviromentVariablesAt<uint>(2),
                 MerchantCategoryCode = 5045,
                 IndustryCode = "R",
                 MerchantName = "ETS CORPORATION",
@@ -102,8 +104,8 @@ namespace Tsys.net.Tests.Mocks
         {
             return new CustomerIdentifierModel
             {
-                AccountNumber = "4744780151055662",
-                ExpDate = "0523"
+                AccountNumber = ("PROD_CC_VISA").GetEnviromentVariable<string>(),
+                ExpDate = ("PROD_CC_VISA_EXP").GetEnviromentVariable<string>()
             };
         }
 
