@@ -57,6 +57,8 @@ namespace Tsys.net.Services.Messages
                 .Append(AsciiTable.FS)
                 .Append(AsciiTable.FS)
                 .Append(developer)
+                .Append(AsciiTable.GS)
+                .Append(new TransactionFeeModel { TransactionFeeAmount = "D00000050" })
                 .EndTsysMessage();
 
             logger.LogInformation(result);

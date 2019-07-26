@@ -14,18 +14,64 @@ namespace Tsys.net.Tests.Mocks
             };
         }
 
-        public static MerchantIdentifierModel MockMerchantIdentifierModel()
+        public static MerchantIdentifierModel MockMerchantIdentifierModel_ETS1()
         {
             return new MerchantIdentifierModel
             {
-                MerchantNumber = 999999999911,
+                MerchantNumber = 394750535319,
+                AcquirerBIN = 433066,
+                StoreNumber = 7619,
+                TerminalNumber = 3268,
+                MerchantCategoryCode = 8999,
+                IndustryCode = "R",
+                MerchantName = "ETS CORPORATION",
+                CityCode = "20147",
+                MerchantState = "VA",
+                CustomerServicePhoneNumber = "800-1234567",
+                MerchantPhoneNumber = "800-1234567",
+                CountryCode = 840,
+                MerchantCity = "Gloucester",
+                DeviceCode = "Q",
+                MerchantEmail = "customer@mycompanydomain.com",
+                MerchantStreetAddress = "8320 Smithonian Internation Cir.",
+            };
+        }
+
+        public static MerchantIdentifierModel MockMerchantIdentifierModel_ETS2()
+        {
+            return new MerchantIdentifierModel
+            {
+                MerchantNumber = 888000000835,
                 AcquirerBIN = 999995,
-                StoreNumber = 0011,
-                TerminalNumber = 9911,
+                StoreNumber = 5999,
+                TerminalNumber = 1515,
                 MerchantCategoryCode = 5999,
-                IndustryCode = "D",
-                MerchantName = "Internet Service Provider",
-                CityCode = "543211420",
+                IndustryCode = "R",
+                MerchantName = "ETS CORPORATION",
+                CityCode = "20147",
+                MerchantState = "VA",
+                CustomerServicePhoneNumber = "800-1234567",
+                MerchantPhoneNumber = "800-1234567",
+                CountryCode = 840,
+                MerchantCity = "Gloucester",
+                DeviceCode = "Q",
+                MerchantEmail = "customer@mycompanydomain.com",
+                MerchantStreetAddress = "8320 Smithonian Internation Cir.",
+            };
+        }
+
+        public static MerchantIdentifierModel MockMerchantIdentifierModel_ETS3()
+        {
+            return new MerchantIdentifierModel
+            {
+                MerchantNumber = 000000000002,
+                AcquirerBIN = 433066,
+                StoreNumber = 0002,
+                TerminalNumber = 7858,
+                MerchantCategoryCode = 5045,
+                IndustryCode = "R",
+                MerchantName = "ETS CORPORATION",
+                CityCode = "20147",
                 MerchantState = "VA",
                 CustomerServicePhoneNumber = "800-1234567",
                 MerchantPhoneNumber = "800-1234567",
@@ -56,8 +102,8 @@ namespace Tsys.net.Tests.Mocks
         {
             return new CustomerIdentifierModel
             {
-                AccountNumber = "4012888888881881",
-                ExpDate = "0218"
+                AccountNumber = "4744780151055662",
+                ExpDate = "0523"
             };
         }
 
@@ -65,8 +111,8 @@ namespace Tsys.net.Tests.Mocks
         {
             return new CustomerAddressIdentifierModel
             {
-                StreetAdress = "8320",
-                ZipCode = "85284"
+                StreetAdress = "19515",
+                ZipCode = "20147"
             };
         }
     }
