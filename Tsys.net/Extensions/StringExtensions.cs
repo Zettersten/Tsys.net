@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text;
 using Tsys.net.Models.Constants;
 using Tsys.net.Models.Shared;
@@ -18,6 +19,74 @@ namespace Tsys.net.Extensions
             }
 
             return source;
+        }
+
+        /// <summary>
+        /// Get a substring of the first N characters.
+        /// </summary>
+        public static string TruncateLeft(this object source, int length, char filler = '0')
+        {
+            var value = string.Empty;
+
+            if (source == null)
+            {
+                return value;
+            }
+
+            value = Convert.ToString(source);
+
+            return value.Trim().Truncate(length).PadLeft(length, filler);
+        }
+
+        /// <summary>
+        /// Get a substring of the first N characters.
+        /// </summary>
+        public static string TruncateLeft(this object source, int length, int padding, char filler = '0')
+        {
+            var value = string.Empty;
+
+            if (source == null)
+            {
+                return value;
+            }
+
+            value = Convert.ToString(source);
+
+            return value.Trim().Truncate(length).PadLeft(padding, filler);
+        }
+
+        /// <summary>
+        /// Get a substring of the first N characters.
+        /// </summary>
+        public static string TruncateRight(this object source, int length, char filler = '0')
+        {
+            var value = string.Empty;
+
+            if (source == null)
+            {
+                return value;
+            }
+
+            value = Convert.ToString(source);
+
+            return value.Trim().Truncate(length).PadRight(length, filler);
+        }
+
+        /// <summary>
+        /// Get a substring of the first N characters.
+        /// </summary>
+        public static string TruncateRight(this object source, int length, int padding, char filler = '0')
+        {
+            var value = string.Empty;
+
+            if (source == null)
+            {
+                return value;
+            }
+
+            value = Convert.ToString(source);
+
+            return value.Trim().Truncate(length).PadRight(padding, filler);
         }
 
         /// <summary>
@@ -86,6 +155,39 @@ namespace Tsys.net.Extensions
             }
 
             return (lrc);
+        }
+
+        public static T GetEnviromentVariablesAt<T>(this string variable, int index, char delimiter = ';')
+        {
+            return GetEnviromentVariables<T>(variable, delimiter)[index];
+        }
+
+        public static T[] GetEnviromentVariables<T>(this string variable, char delimiter = ';')
+        {
+            var result = Environment
+                .GetEnvironmentVariable(variable).Split(delimiter);
+
+            if (result == null)
+            {
+                return default;
+            }
+
+            if (result.Length == 0)
+            {
+                return default;
+            }
+
+            return result.Select(x => x.ConvertValue<T>()).ToArray();
+        }
+
+        public static T GetEnviromentVariable<T>(this string variable)
+        {
+            return Environment.GetEnvironmentVariable(variable).ConvertValue<T>();
+        }
+
+        public static T ConvertValue<T>(this string value)
+        {
+            return (T)Convert.ChangeType(value, typeof(T));
         }
     }
 }
