@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Tsys.net.Extensions;
 using Tsys.net.Models.Shared;
-using static Tsys.net.Models.Shared.AsciiTable;
 
 namespace Tsys.net.Models
 {
@@ -35,12 +36,23 @@ namespace Tsys.net.Models
 
             foreach (var transaction in BatchTransactions)
             {
-                batchTransaction += $"{STX}{transaction}{ETB}";
+                batchTransaction += $"{transaction}";
             }
 
-            var message = $"{BatchHeader}{ETB}{STX}{BatchProfile}{ETB}{batchTransaction}{STX}{BatchTrailer}";
+            return $"{BatchHeader}{BatchProfile}{batchTransaction}{BatchTrailer}";
+        }
 
-            return (STX + message + ETX) + (message + ETX).GetLRC();
+        public string ToDump()
+        {
+            var dump = ToString();
+
+            dump = Regex.Replace(dump, $"{AsciiTable.ETB}.", $"<{nameof(AsciiTable.ETB)}>{Environment.NewLine}");
+            dump = Regex.Replace(dump, $"{AsciiTable.STX}", $"<{nameof(AsciiTable.STX)}>");
+            dump = Regex.Replace(dump, $"{AsciiTable.ETX}.", $"<{nameof(AsciiTable.ETX)}>{Environment.NewLine}");
+
+            return dump
+                .Replace(" ", $"_")
+                .Replace(("PROD_CC_VISA").GetEnviromentVariable<string>(), "****************");
         }
     }
 }

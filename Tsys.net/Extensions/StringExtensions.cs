@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Tsys.net.Models.Constants;
@@ -165,7 +166,7 @@ namespace Tsys.net.Extensions
         public static T[] GetEnviromentVariables<T>(this string variable, char delimiter = ';')
         {
             var result = Environment
-                .GetEnvironmentVariable(variable).Split(delimiter);
+                .GetEnvironmentVariable(variable, EnvironmentVariableTarget.User).Split(delimiter);
 
             if (result == null)
             {
@@ -188,6 +189,32 @@ namespace Tsys.net.Extensions
         public static T ConvertValue<T>(this string value)
         {
             return (T)Convert.ChangeType(value, typeof(T));
+        }
+
+        public static string GetRecordType(this int group1, int optionalgroup1 = 01000000, int optionalgroup2 = 01000000, int optionalgroup3 = 01000000, int optionalgroup4 = 01000000)
+        {
+            return string.Format("{0}{1}{2}{3}{4}",
+                Encoding.ASCII.GetString(group1.GetBytesFromInt()),
+                Encoding.ASCII.GetString(optionalgroup1.GetBytesFromInt()),
+                Encoding.ASCII.GetString(optionalgroup2.GetBytesFromInt()),
+                Encoding.ASCII.GetString(optionalgroup3.GetBytesFromInt()),
+                Encoding.ASCII.GetString(optionalgroup4.GetBytesFromInt())
+             );
+        }
+
+        public static byte[] GetBytesFromInt(this int bytes)
+        {
+            var list = new List<byte>();
+            var binary = bytes.ToString();
+
+            for (int i = 0; i < binary.Length; i += 8)
+            {
+                var t = binary.Substring(i, 8);
+
+                list.Add(Convert.ToByte(t, 2));
+            }
+
+            return list.ToArray();
         }
     }
 }

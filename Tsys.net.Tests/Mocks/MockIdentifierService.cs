@@ -189,6 +189,7 @@ namespace Tsys.net.Tests.Mocks
             {
                 MerchantCategoryCode = ("PROD_MERCHANT_CATEGORY_CODES").GetEnviromentVariablesAt<uint>(0),
                 TerminalIdNumber = ("PROD_MERCHANT_V_NUMBERS").GetEnviromentVariablesAt<ulong>(0),
+                MerchantLocationNumber = ("PROD_MERCHANT_LOCATION_NUMBERS").GetEnviromentVariablesAt<uint>(0),
                 MerchantName = "ETS CORPORATION",
                 CityCode = "20147",
                 MerchantState = "VA",
@@ -203,6 +204,7 @@ namespace Tsys.net.Tests.Mocks
             {
                 MerchantCategoryCode = ("PROD_MERCHANT_CATEGORY_CODES").GetEnviromentVariablesAt<uint>(1),
                 TerminalIdNumber = ("PROD_MERCHANT_V_NUMBERS").GetEnviromentVariablesAt<ulong>(1),
+                MerchantLocationNumber = ("PROD_MERCHANT_LOCATION_NUMBERS").GetEnviromentVariablesAt<uint>(1),
                 MerchantName = "ETS CORPORATION",
                 CityCode = "20147",
                 MerchantState = "VA",
@@ -217,6 +219,7 @@ namespace Tsys.net.Tests.Mocks
             {
                 MerchantCategoryCode = ("PROD_MERCHANT_CATEGORY_CODES").GetEnviromentVariablesAt<uint>(2),
                 TerminalIdNumber = ("PROD_MERCHANT_V_NUMBERS").GetEnviromentVariablesAt<ulong>(2),
+                MerchantLocationNumber = ("PROD_MERCHANT_LOCATION_NUMBERS").GetEnviromentVariablesAt<uint>(2),
                 MerchantName = "ETS CORPORATION",
                 CityCode = "20147",
                 MerchantState = "VA",
@@ -229,12 +232,12 @@ namespace Tsys.net.Tests.Mocks
         {
             return new BatchTrailerIdentifierModel
             {
+                BatchTransmissionDate = DateTime.Now.ToString("MMdd"),
                 BatchNumber = 1,
+                BatchRecordCount = 4,
+                BatchHashingTotal = 100,
                 CashBackTotal = 0,
-                BatchNetDeposit = 1,
-                BatchRecordCount = 1,
-                BatchHashingTotal = 1,
-                BatchTransmissionDate = DateTime.Now.ToString("MMdd")
+                BatchNetDeposit = 100
             };
         }
 
@@ -242,12 +245,12 @@ namespace Tsys.net.Tests.Mocks
         {
             return new BatchTrailerIdentifierModel
             {
+                BatchTransmissionDate = DateTime.Now.ToString("MMdd"),
                 BatchNumber = 1,
+                BatchRecordCount = 4,
+                BatchHashingTotal = 100,
                 CashBackTotal = 0,
-                BatchNetDeposit = 1,
-                BatchRecordCount = 1,
-                BatchHashingTotal = 1,
-                BatchTransmissionDate = DateTime.Now.ToString("MMdd")
+                BatchNetDeposit = 100
             };
         }
 
@@ -255,12 +258,12 @@ namespace Tsys.net.Tests.Mocks
         {
             return new BatchTrailerIdentifierModel
             {
+                BatchTransmissionDate = DateTime.Now.ToString("MMdd"),
                 BatchNumber = 1,
+                BatchRecordCount = 4,
+                BatchHashingTotal = 100,
                 CashBackTotal = 0,
-                BatchNetDeposit = 1,
-                BatchRecordCount = 1,
-                BatchHashingTotal = 1,
-                BatchTransmissionDate = DateTime.Now.ToString("MMdd")
+                BatchNetDeposit = 100
             };
         }
 
@@ -288,6 +291,7 @@ namespace Tsys.net.Tests.Mocks
                 ReimbursementAttribute = '0',
                 SettlementAmount = 100,
                 AuthorizedAmount = 100,
+                TotalAuthorizedAmount = 100,
                 TransactionFee = 50
             };
         }
@@ -316,6 +320,7 @@ namespace Tsys.net.Tests.Mocks
                 ReimbursementAttribute = '0',
                 SettlementAmount = 100,
                 AuthorizedAmount = 100,
+                TotalAuthorizedAmount = 100,
                 TransactionFee = 50
             };
         }
@@ -344,7 +349,8 @@ namespace Tsys.net.Tests.Mocks
                 ReimbursementAttribute = '0',
                 SettlementAmount = 100,
                 AuthorizedAmount = 100,
-                TransactionFee = 50
+                TotalAuthorizedAmount = 100,
+                TransactionFee = 0
             };
         }
 

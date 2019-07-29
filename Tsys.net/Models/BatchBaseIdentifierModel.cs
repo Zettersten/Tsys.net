@@ -1,4 +1,6 @@
-﻿namespace Tsys.net.Models
+﻿using Tsys.net.Models.GroupRecords;
+
+namespace Tsys.net.Models
 {
     public class BatchBaseIdentifierModel
     {
@@ -10,7 +12,7 @@
 
         public char RoutingId { get; } = 'Z';
 
-        public string RecordType { get; set; }
+        public RecordTypeModel RecordType { get; set; }
 
         public string GetStartOfMessage()
         {
