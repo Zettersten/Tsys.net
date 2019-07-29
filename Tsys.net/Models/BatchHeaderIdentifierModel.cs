@@ -245,7 +245,7 @@ namespace Tsys.net.Models
              */
             if (TransactionFee > 0)
             {
-                const string tagSize = "14";
+                const string tagSize = "18";
                 const string tagName = "TFA";
                 const string tagLength = "09";
 

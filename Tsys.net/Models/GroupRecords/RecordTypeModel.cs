@@ -51,6 +51,11 @@ namespace Tsys.net.Models.GroupRecords
 
             RecordTypeModel result = recordType;
 
+            if (value.Length == 1)
+            {
+                return result;
+            }
+
             result.GroupsI = GetBytesWithinRange(recordBytes, 1);
             result.GroupsII = GetBytesWithinRange(recordBytes, 2);
             result.GroupsIII = GetBytesWithinRange(recordBytes, 3);
