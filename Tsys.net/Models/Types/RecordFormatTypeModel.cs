@@ -4,17 +4,28 @@ namespace Tsys.net.Models.Types
 {
     public struct RecordFormatTypeModel
     {
-        public const string CreditCardAuthorizationRequest = "D";
-        public const string CreditCardAuthorizationResponse = "E";
-        public const string DebitEbtRequest = "T";
-        public const string DebitEbtResponse = "U";
-        public const string DebitEbtConfirmation = "V";
-        public const string Settlement = "K";
-        public const string PekExchangeRequest = "P";
-        public const string KeepAlive = "A";
-        public const string Iso8583 = "I";
+        public const char CreditCardAuthorizationRequest = 'D';
+        public const char CreditCardAuthorizationResponse = 'E';
+        public const char DebitEbtRequest = 'T';
+        public const char DebitEbtResponse = 'U';
+        public const char DebitEbtConfirmation = 'V';
+        public const char Settlement = 'K';
+        public const char PekExchangeRequest = 'P';
+        public const char KeepAlive = 'A';
+        public const char Iso8583 = 'I';
+        private readonly char value;
 
-        public static string GetName(string typeValue)
+        public RecordFormatTypeModel(char value)
+        {
+            this.value = value;
+        }
+
+        public static implicit operator RecordFormatTypeModel(char value)
+        {
+            return new RecordFormatTypeModel(value);
+        }
+
+        public static string GetName(char typeValue)
         {
             switch (typeValue)
             {
@@ -48,6 +59,11 @@ namespace Tsys.net.Models.Types
                 default:
                     throw new ArgumentException(nameof(typeValue));
             }
+        }
+
+        public override string ToString()
+        {
+            return value.ToString();
         }
     }
 }

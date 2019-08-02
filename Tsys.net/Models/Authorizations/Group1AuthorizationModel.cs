@@ -11,7 +11,7 @@ namespace Tsys.net.Models.Authorizations
         /// <summary>
         /// #1 A/N 4.67 (CreditCardAuthorizationRequest)
         /// </summary>
-        public string RecordFormat { get; set; }
+        public RecordFormatTypeModel RecordFormat { get; set; }
 
         /// <summary>
         /// #1 A/N 4.9 (MultipleAuthorizationsPerConnectionFullDuplexInterleaved)
@@ -31,7 +31,7 @@ namespace Tsys.net.Models.Authorizations
         /// <summary>
         /// #12 NUM 4.59 (999999999911)
         /// </summary>
-        public long MerchantNumber { get; set; }
+        public ulong MerchantNumber { get; set; }
 
         /// <summary>
         /// #4 NUM 4.81 (1515)
@@ -126,12 +126,12 @@ namespace Tsys.net.Models.Authorizations
         /// <summary>
         /// #1 - 12 NUM 4.88
         /// </summary>
-        public long TransactionAmount { get; set; }
+        public ulong TransactionAmount { get; set; }
 
         /// <summary>
         /// #0, 12 NUM 4.76
         /// </summary>
-        public long SecondaryAmount { get; set; }
+        public ulong SecondaryAmount { get; set; }
 
         /// <summary>
         /// #0, 4 A/N 4.54
@@ -153,7 +153,7 @@ namespace Tsys.net.Models.Authorizations
         /// </summary>
         public ReversalAndCancelDataIModel ReversalAndCancelData { get; set; }
 
-        public static Group1AuthorizationModel NewG1AuthorizationMessageRequest(uint acquirerBin, TransactionCodeTypeModel transactionCodeType, uint transactionSequence, long amount, long cashback)
+        public static Group1AuthorizationModel NewG1AuthorizationMessageRequest(uint acquirerBin, TransactionCodeTypeModel transactionCodeType, uint transactionSequence, ulong amount, ulong cashback)
         {
             return new Group1AuthorizationModel
             {

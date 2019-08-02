@@ -1,9 +1,43 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace Tsys.net.Extensions
 {
     public static class StringExtensions
     {
+        public static T GetEnviromentVariablesAt<T>(this string variable, int index, char delimiter = ';')
+        {
+            return GetEnviromentVariables<T>(variable, delimiter)[index];
+        }
+
+        public static T[] GetEnviromentVariables<T>(this string variable, char delimiter = ';')
+        {
+            var result = Environment
+                .GetEnvironmentVariable(variable, EnvironmentVariableTarget.User).Split(delimiter);
+
+            if (result == null)
+            {
+                return default;
+            }
+
+            if (result.Length == 0)
+            {
+                return default;
+            }
+
+            return result.Select(x => x.ConvertValue<T>()).ToArray();
+        }
+
+        public static T GetEnviromentVariable<T>(this string variable)
+        {
+            return Environment.GetEnvironmentVariable(variable).ConvertValue<T>();
+        }
+
+        public static T ConvertValue<T>(this string value)
+        {
+            return (T)Convert.ChangeType(value, typeof(T));
+        }
+
         /// <summary>
         /// Get a substring of the first N characters.
         /// </summary>
@@ -15,6 +49,74 @@ namespace Tsys.net.Extensions
             }
 
             return source;
+        }
+
+        /// <summary>
+        /// Get a substring of the first N characters.
+        /// </summary>
+        public static string TruncateLeft(this object source, int length, char filler = '0')
+        {
+            var value = string.Empty;
+
+            if (source == null)
+            {
+                return value;
+            }
+
+            value = Convert.ToString(source);
+
+            return value.Trim().Truncate(length).PadLeft(length, filler);
+        }
+
+        /// <summary>
+        /// Get a substring of the first N characters.
+        /// </summary>
+        public static string TruncateLeft(this object source, int length, int padding, char filler = '0')
+        {
+            var value = string.Empty;
+
+            if (source == null)
+            {
+                return value;
+            }
+
+            value = Convert.ToString(source);
+
+            return value.Trim().Truncate(length).PadLeft(padding, filler);
+        }
+
+        /// <summary>
+        /// Get a substring of the first N characters.
+        /// </summary>
+        public static string TruncateRight(this object source, int length, char filler = '0')
+        {
+            var value = string.Empty;
+
+            if (source == null)
+            {
+                return value;
+            }
+
+            value = Convert.ToString(source);
+
+            return value.Trim().Truncate(length).PadRight(length, filler);
+        }
+
+        /// <summary>
+        /// Get a substring of the first N characters.
+        /// </summary>
+        public static string TruncateRight(this object source, int length, int padding, char filler = '0')
+        {
+            var value = string.Empty;
+
+            if (source == null)
+            {
+                return value;
+            }
+
+            value = Convert.ToString(source);
+
+            return value.Trim().Truncate(length).PadRight(padding, filler);
         }
 
         /// <summary>
@@ -76,14 +178,26 @@ namespace Tsys.net.Extensions
             return 0;
         }
 
+        /// <summary>
+        /// Convert string to digits only
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static string ToDigits(this string value)
         {
             return new string(value.Where(x => char.IsDigit(x)).ToArray());
         }
 
+        /// <summary>
+        /// Short cut for padding Left on int values
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="padLength"></param>
+        /// <param name="padChar"></param>
+        /// <returns></returns>
         public static string PadLeft(this int value, int padLength, char padChar)
         {
-            return value.ToString().PadLeft(padLength, padChar);
+            return value.TruncateLeft(padLength, padChar);
         }
 
         /// <summary>
@@ -104,22 +218,13 @@ namespace Tsys.net.Extensions
         /// </summary>
         /// <param name="cityCode"></param>
         /// <returns></returns>
-        public static string FormatCityCode(this string cityCode)
-        {
-            string value = cityCode;
-            return $"{value}".PadRight(9, ' ');
-        }
+        public static string FormatCityCode(this string cityCode) => cityCode.TruncateRight(9, ' ');
 
         /// <summary>
         /// Format Merchant Email Address
         /// </summary>
         /// <param name="merchantEmail"></param>
         /// <returns></returns>
-        public static string FormatMerchantEmailAddress(this string merchantEmail)
-        {
-            string value = merchantEmail;
-
-            return value.Truncate(20).ToUpper().Trim();
-        }
+        public static string FormatMerchantEmailAddress(this string merchantEmail) => merchantEmail.Truncate(20).ToUpper().Trim();
     }
 }
